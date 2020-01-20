@@ -1,0 +1,34 @@
+.footer {
+    display: flex;
+    align-items: stretch;
+    height: auto;
+    padding: 2rem 0;
+    color: #fff;
+    background-color: rgb(21, 46, 71);
+    box-shadow: 2px 2px 15px 1px #838181;
+    margin: auto 0 0;
+    position: relative;
+}
+.footer__inner {
+    display: flex;
+    justify-content: space-between;
+}
+.btn-scrollTop {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-scrollTop:focus {
+    outline: none;
+}
+.btn-scrollTop:hover {
+    padding: 2px;
+}
