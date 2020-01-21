@@ -20,3 +20,6 @@ body {
 *[disabled] {
     cursor: default;
 }
+*:focus {
+    outline: none;
+}

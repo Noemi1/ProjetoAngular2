@@ -6,12 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ContasModule } from './contas/contas.module';
 import { HeaderComponent } from './header/header.component';
+import { HomePageComponent } from './home/home-page/home-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './home/login/login/login.component';
 import { PessoasModule } from './pessoas/pessoas.module';
-
 import { routing } from './app.routing';
-import { HomePageComponent } from './home/home-page/home-page.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 

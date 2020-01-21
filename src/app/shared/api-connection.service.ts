@@ -10,7 +10,7 @@ import { PessoasModel } from './models/pessoas.model';
 })
 export class ApiConnectionService {
 
-  readonly rootURL = 'http://localhost:54966/api'; /*Configurar a Porta do Visual Studio aqui*/ 
+  readonly rootURL = 'http://localhost:54966/api'; /*Configurar a Porta do Visual Studio aqui*/
   formData: ContasModel;
   listContas: ContasModel[];
   listPessoas: PessoasModel[];
