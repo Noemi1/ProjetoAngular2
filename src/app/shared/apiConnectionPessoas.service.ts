@@ -10,19 +10,26 @@ import { PessoasModel } from './models/pessoas.model';
 export class ApiConnectionServicePessoas {
 
   readonly rootURL = 'http://localhost:54966/api'; /*Configurar a Porta do Visual Studio aqui*/
+
   formData: PessoasModel;
   listPessoas: PessoasModel[];
 
   constructor(private http: HttpClient) { }
 
+  refreshList() {
+    this.http.get(this.rootURL + '/pessoas').toPromise()
+    .then(res => this.listPessoas = res as PessoasModel[]);
+  }
   postPaymentDetail() {
     const pessoas = this.http.post(this.rootURL + '/pessoas', this.formData);
-    // tslint:disable-next-line: no-unused-expression
     return pessoas;
   }
-
-  refreshList(url: string) {
-    this.http.get(this.rootURL + url).toPromise()
-      .then(res => this.listPessoas = res as PessoasModel[]);
+  putPaymentDetail() {
+    return this.http.put(this.rootURL + '/pessoas/' + this.formData.IdPessoa, this.formData);
   }
+
+  deletePaymentDetail(id) {
+    return this.http.delete(this.rootURL + '/pessoas/' + id);
+  }
+
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { PessoasModel } from './../../shared/models/pessoas.model';
 import { ApiConnectionServicePessoas } from '../../shared/apiConnectionPessoas.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-pessoa-list',
@@ -16,11 +17,11 @@ export class PessoaListComponent implements OnInit {
 
     constructor(
         private service: ApiConnectionServicePessoas,
-        private route: ActivatedRoute
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
-        this.service.refreshList('/pessoas');
+        this.service.refreshList();
     }
     onSelect(item: PessoasModel) {
         if (this.selected !== item) {
@@ -32,6 +33,29 @@ export class PessoaListComponent implements OnInit {
         } else {
             this.selected = null;
             return this.selected;
+        }
+    }
+    onDelete(pessoa: PessoasModel) {
+        if (confirm('Tem certeza que deseja deletar o registro?')) {
+            this.service.deletePaymentDetail(pessoa.IdPessoa).subscribe(
+                res => {
+                    this.service.refreshList();
+                    this.service.formData = {
+                        IdPessoa: 0,
+                        NomePessoa: '',
+                        DataNascPessoa: '',
+                        RgPessoa: '',
+                        CpfPessoa: '',
+                        Endereco: '',
+                        NumeroEnd: '',
+                        Cep: '',
+                    };
+                },
+                err => {
+                    console.log(err);
+                    this.toastr.error('Delete unsuccessfully', 'Please select one row to delete');
+                }
+            );
         }
     }
 }

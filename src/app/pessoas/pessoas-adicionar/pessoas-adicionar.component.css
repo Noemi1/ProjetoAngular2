@@ -26,17 +26,22 @@
     max-width: 530px;
     position: relative; 
     z-index: 1;
+    overflow-y: scroll;
+}
+.modal-content--cadastrarCliente {
+    max-width: 730px;
 }
 .linha {
-    justify-content: center;
+    justify-content: space-between;
     margin: 1rem 0;
 }
-.form-second-step {
+.form-cadastro-inner {
     height: 80%;
     display: flex;
     flex-flow: column;
     justify-content: center;    
     margin: 0 auto;
+    padding: 0;
 }
 .btn.enviar-form {
     background-color: rgba(0, 100, 0, 0.767);
@@ -47,7 +52,7 @@
     margin-left: auto;
 }
 
-.form-second-step .ui-inputgroup {
+.form-cadastro-inner .ui-inputgroup {
     padding: 0;
 }
 .inputMask input[pinputtext]{

@@ -1,5 +1,6 @@
 .footer {
     display: flex;
+    -webkit-box-align: stretch;
     align-items: stretch;
     height: auto;
     padding: 2rem 0;
@@ -7,7 +8,6 @@
     background-color: rgb(21, 46, 71);
     box-shadow: 2px 2px 15px 1px #838181;
     margin: auto 0 0;
-    position: relative;
 }
 .footer__inner {
     display: flex;

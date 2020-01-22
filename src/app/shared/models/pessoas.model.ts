@@ -1,7 +1,7 @@
 export class PessoasModel {
     IdPessoa: number;
     NomePessoa: string;
-    DataNascPessoa: Date;
+    DataNascPessoa: string;
     RgPessoa: string;
     CpfPessoa: string;
     Endereco: string;

@@ -34,5 +34,5 @@ import { InputMaskModule } from 'primeng/inputmask';
 })
 export class ContasModule {
     public myModel = '3213213211';
-    public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+    public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 }

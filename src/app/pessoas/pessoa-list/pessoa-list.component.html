@@ -1,11 +1,13 @@
-<div class="wrapper">
+<div class="wrapper pessoas-list">
     <header class="wrapper-body header-options">
         <h2>Registros</h2>
         <div class="header-options-botoes" *ngIf="!(item === selected)">
             <a [routerLink]="['pessoas-detail/', idPessoa]" oi class="btn ver-detalhes" title="Ver Detalhes">
                 <i class="pi pi-file-o"></i>
             </a>
-            <button class="btn excluir" title="Excluir Registro"><i class="pi pi-trash"></i></button>
+            <button class="btn excluir" title="Excluir Registro" (click)="onDelete(this.selected)" >
+                <i class="pi pi-trash"></i>
+            </button>
         </div>
         <a [routerLink]="['pessoas-adicionar']"  class="btn adicionar" title="Adicionar Registro">
             <i class="pi pi-plus"></i>
@@ -40,3 +42,4 @@
         </p-table>
     </div>
 </div>
+<router-outlet></router-outlet>
