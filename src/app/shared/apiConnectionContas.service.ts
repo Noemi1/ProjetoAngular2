@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { ContasModel } from './models/contas.model';
-import { PessoasModel } from './models/pessoas.model';
-
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +11,17 @@ export class ApiConnectionService {
   readonly rootURL = 'http://localhost:54966/api'; /*Configurar a Porta do Visual Studio aqui*/
   formData: ContasModel;
   listContas: ContasModel[];
-  listPessoas: PessoasModel[];
 
   constructor(private http: HttpClient) { }
 
   postPaymentDetail() {
-    return this.http.post(this.rootURL + '/contas', this.formData);
+    const contas = this.http.post(this.rootURL + '/contas', this.formData);
+    // tslint:disable-next-line: no-unused-expression
+    return contas;
   }
 
-  refreshList() {
-    this.http.get(this.rootURL + '/contas').toPromise()
+  refreshList(url: string) {
+    this.http.get(this.rootURL + url).toPromise()
       .then(res => this.listContas = res as ContasModel[]);
-
   }
-
-
 }

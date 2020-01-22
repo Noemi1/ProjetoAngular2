@@ -13,6 +13,7 @@ import { PessoasModule } from './pessoas/pessoas.module';
 import { routing } from './app.routing';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,8 +31,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ContasModule,
     PessoasModule,
     NgbModule,
+    BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

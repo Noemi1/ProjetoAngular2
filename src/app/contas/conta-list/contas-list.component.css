@@ -39,20 +39,9 @@
     justify-content: flex-end;
     align-items: center;
 }
-.header-options .btn {
-    margin: 0 0 0 10px;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 2rem;
-    text-align: center;
-    cursor: pointer;
-    color: #fff;
-}
-.header-options .btn:active {
-    border-width: 1px;
-}
-.header-options .btn:hover {
-    filter: drop-shadow(3px 3px 1px #d4cfcf);
+
+.btn {
+    color: #fff
 }
 .btn.excluir{
     background-color: rgb(165, 39, 39);

@@ -1,15 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { PessoasModel } from './../../shared/models/pessoas.model';
+import { ApiConnectionServicePessoas } from '../../shared/apiConnectionPessoas.service';
 
 @Component({
-  selector: 'app-pessoa-list',
-  templateUrl: './pessoa-list.component.html',
-  styleUrls: ['./pessoa-list.component.css']
+    selector: 'app-pessoa-list',
+    templateUrl: './pessoa-list.component.html',
+    styleUrls: ['./pessoa-list.component.css']
 })
 export class PessoaListComponent implements OnInit {
 
-  constructor() { }
+    selected: PessoasModel;
+    @Input() idPessoa: number;
 
-  ngOnInit() {
-  }
+    constructor(
+        private service: ApiConnectionServicePessoas,
+        private route: ActivatedRoute
+    ) { }
 
+    ngOnInit() {
+        this.service.refreshList('/pessoas');
+    }
+    onSelect(item: PessoasModel) {
+        if (this.selected !== item) {
+            this.selected = item;
+            console.log(item);
+            this.idPessoa = this.selected.IdPessoa;
+            return this.idPessoa;
+
+        } else {
+            this.selected = null;
+            return this.selected;
+        }
+    }
 }

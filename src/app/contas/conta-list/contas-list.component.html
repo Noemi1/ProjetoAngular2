@@ -2,14 +2,15 @@
     <header class="wrapper-body header-options">
         <h2>Registros</h2>
         <div class="header-options-botoes" *ngIf="!(item === selected)">
-            <a [routerLink]="['contas-detail/', oi]" class="btn ver-detalhes" title="Ver Detalhes">
+            <a [routerLink]="['contas-detail/', idConta]" class="btn ver-detalhes" title="Ver Detalhes">
                 <i class="pi pi-file-o"></i>
             </a>
             <button class="btn excluir" title="Excluir Registro"><i class="pi pi-trash"></i></button>
         </div>
-        <button class="btn adicionar" title="Adicionar Registro"><i class="pi pi-plus"></i></button>
+        <a [routerLink]="['contas-adicionar']" class="btn adicionar" title="Adicionar Registro">
+            <i class="pi pi-plus"></i>
+        </a>
     </header>
-
     <div class="wrapper-body list-container">
         <p-table *ngIf="service.listContas" [value]="service.listContas">
             <ng-template pTemplate="header">
@@ -22,7 +23,7 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item >
-                <tr (click)="onSelect(item)" [class.selected]="item === selected"  id="this.selected.IdConta">
+                <tr (click)="onSelect(item)" [class.selected]="item === selected">
                     <td>{{ item.IdConta }}</td>
                     <td>{{ item.Agencia }}</td>
                     <td>{{ item.NumeroConta }}</td>
@@ -33,3 +34,7 @@
         </p-table>
     </div>
 </div>
+
+<router-outlet>
+
+</router-outlet>

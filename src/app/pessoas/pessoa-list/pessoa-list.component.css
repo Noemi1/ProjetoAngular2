@@ -1,0 +1,57 @@
+.wrapper-body {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.list-container {
+    padding: 20px 0 50px;
+    min-width: 500px;
+}
+.list-container tr {
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+}
+.list-container tr:hover {
+    background-color: rgba(22, 39, 56, 0.1);
+}
+.list-container tr.selected {
+    background-color: rgba(22, 39, 56, 0.17);
+}
+.list-container tr:active {
+    background-color: rgba(22, 39, 56, 0.5);
+    color: white;
+}
+.header-options {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-flow: column wrap;
+    margin: 20px auto 10px;
+    height: 70px;
+}
+.header-options h2 {
+    font-size: 3rem;
+    align-self: flex-start;
+}
+.header-options-botoes {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.btn {
+    color: #fff
+}
+.btn.excluir{
+    background-color: rgb(165, 39, 39);
+    border: 0px rgb(165, 39, 39) solid;
+}
+.btn.adicionar{
+    background-color: rgba(0, 100, 0, 0.767);
+    border: 0px rgba(0, 100, 0, 0.767)solid;
+}
+.btn.ver-detalhes{
+    background-color: rgb(28, 117, 206);
+    border: 0px rgb(28, 117, 206) solid;
+    
+}

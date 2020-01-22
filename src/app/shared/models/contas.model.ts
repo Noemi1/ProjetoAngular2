@@ -2,8 +2,8 @@
 
 export class ContasModel {
     IdConta: number;
-    Agencia: number;
-    NumeroConta: number;
-    DataAbertura: number;
+    Agencia: string;
+    NumeroConta: string;
+    DataAbertura: string;
     IdPessoa: number /* IdPessoa */;
 }

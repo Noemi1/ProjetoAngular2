@@ -1,23 +1,25 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PessoaListComponent } from './pessoa-list/pessoa-list.component';
 import { PessoaDetailComponent } from './pessoa-detail/pessoa-detail.component';
+import { PessoasAdicionarComponent } from './pessoas-adicionar/pessoas-adicionar.component';
 
 const pessoasRoutes: Routes = [
     { path: 'pessoas', component: PessoaListComponent, children: [
-        { path: 'pessoa-detail/:id', component: PessoaDetailComponent },
-        { path: 'pessoa-detail/:id/editar', component: PessoaDetailComponent }
+        { path: 'pessoas-adicionar', component: PessoasAdicionarComponent },
+        { path: 'pessoas-detail/:id', component: PessoaDetailComponent },
+        { path: 'pessoas-detail/:id/editar', component: PessoaDetailComponent },
     ] },
 ];
 
 @NgModule({
     imports: [
-        CommonModule,
         RouterModule.forChild(pessoasRoutes),
     ],
-    exports: [],
+    exports: [
+        RouterModule,
+    ],
     declarations: [],
     providers: [],
 
