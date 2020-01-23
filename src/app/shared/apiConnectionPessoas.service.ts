@@ -14,7 +14,9 @@ export class ApiConnectionServicePessoas {
   formData: PessoasModel;
   listPessoas: PessoasModel[];
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   refreshList() {
     this.http.get(this.rootURL + '/pessoas').toPromise()
@@ -29,7 +31,7 @@ export class ApiConnectionServicePessoas {
   }
 
   deletePaymentDetail(id) {
-    return this.http.delete(this.rootURL + '/pessoas/' + id);
+      return this.http.delete(this.rootURL + '/pessoas/' + id);
   }
 
 }

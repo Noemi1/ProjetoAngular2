@@ -6,7 +6,7 @@ import { ContasModel } from './models/contas.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiConnectionService {
+export class ApiConnectionContasService {
 
   readonly rootURL = 'http://localhost:54966/api'; /*Configurar a Porta do Visual Studio aqui*/
   formData: ContasModel;
@@ -16,12 +16,14 @@ export class ApiConnectionService {
 
   postPaymentDetail() {
     const contas = this.http.post(this.rootURL + '/contas', this.formData);
-    // tslint:disable-next-line: no-unused-expression
     return contas;
   }
 
-  refreshList(url: string) {
-    this.http.get(this.rootURL + url).toPromise()
+  refreshList() {
+    this.http.get(this.rootURL + '/contas').toPromise()
       .then(res => this.listContas = res as ContasModel[]);
+  }
+  deleteConta(id) {
+      return this.http.delete(this.rootURL + '/contas/' + id);
   }
 }

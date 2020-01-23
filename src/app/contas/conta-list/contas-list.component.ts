@@ -1,7 +1,8 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ApiConnectionService } from '../../shared/apiConnectionContas.service';
+import { ApiConnectionContasService } from '../../shared/apiConnectionContas.service';
 import { ContasModel } from './../../shared/models/contas.model';
 
 @Component({
@@ -15,11 +16,12 @@ export class ContasListComponent implements OnInit {
     @Input() idConta: number;
 
     constructor(
-        private service: ApiConnectionService
+        private service: ApiConnectionContasService,
+        private toastr: ToastrService,
     ) { }
 
     ngOnInit() {
-        this.service.refreshList('/contas');
+        this.service.refreshList();
     }
     onSelect(item: ContasModel) {
         if (this.selected !== item) {
@@ -30,6 +32,26 @@ export class ContasListComponent implements OnInit {
         } else {
             this.selected = null;
             return this.selected;
+        }
+    }
+    onDelete(contas: ContasModel) {
+        if (confirm('Tem certeza que deseja deletar o registro?')) {
+            this.service.deleteConta(contas.IdConta).subscribe(
+                res => {
+                    this.service.refreshList();
+                    this.service.formData = {
+                        IdConta: 0,
+                        Agencia: '',
+                        NumeroConta: '',
+                        DataAbertura: '',
+                        IdPessoa: 0,
+                    };
+                },
+                err => {
+                    console.log(err);
+                    this.toastr.error('Delete unsuccessfully', 'Please select one row to delete');
+                }
+            );
         }
     }
 }

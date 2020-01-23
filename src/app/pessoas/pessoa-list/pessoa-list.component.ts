@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { PessoasModel } from './../../shared/models/pessoas.model';
+import { ContasModel } from './../../shared/models/contas.model';
 import { ApiConnectionServicePessoas } from '../../shared/apiConnectionPessoas.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,10 +16,12 @@ export class PessoaListComponent implements OnInit {
 
     selected: PessoasModel;
     @Input() idPessoa: number;
+    contaPessoa: ContasModel[];
 
     constructor(
         private service: ApiConnectionServicePessoas,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private http: HttpClient,
     ) { }
 
     ngOnInit() {
@@ -40,6 +44,7 @@ export class PessoaListComponent implements OnInit {
             this.service.deletePaymentDetail(pessoa.IdPessoa).subscribe(
                 res => {
                     this.service.refreshList();
+
                     this.service.formData = {
                         IdPessoa: 0,
                         NomePessoa: '',

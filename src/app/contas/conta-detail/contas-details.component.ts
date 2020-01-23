@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { ContasListComponent } from './../conta-list/contas-list.component';
-import { ApiConnectionService } from '../../shared/apiConnectionContas.service';
+import { ApiConnectionContasService } from '../../shared/apiConnectionContas.service';
 import { ContasModel } from './../../shared/models/contas.model';
 
 @Component({
@@ -14,7 +14,7 @@ export class ContasDetailsComponent implements OnInit {
 
   constructor(
     private id: ContasListComponent,
-    private service: ApiConnectionService, ) { }
+    private service: ApiConnectionContasService, ) { }
 
   ngOnInit() {
     console.log(this.id.selected);
