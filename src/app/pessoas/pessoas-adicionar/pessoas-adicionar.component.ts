@@ -1,12 +1,11 @@
-import { PessoasModel } from './../../shared/models/pessoas.model';
-import { Component, OnInit } from '@angular/core'
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { ApiConnectionServicePessoas } from './../../shared/apiConnectionPessoas.service';
 import { ToastrService } from 'ngx-toastr';
 // import * as Inputmask from 'inputmask';
-import { Router } from '@angular/router';
+import { Router, } from '@angular/router';
+import { empty } from 'rxjs';
 
 @Component({
     selector: 'app-pessoas-adicionar',
@@ -19,11 +18,10 @@ export class PessoasAdicionarComponent implements OnInit {
         private service: ApiConnectionServicePessoas,
         private toastr: ToastrService,
         private router: Router
-        ) { }
+    ) { }
 
     ngOnInit() {
         this.resetForm();
-        // Inputmask().mask(document.querySelectorAll('input'));
     }
     resetForm(form?: NgForm) {
         if (form != null) {
@@ -76,5 +74,11 @@ export class PessoasAdicionarComponent implements OnInit {
             }
         );
     }
-
+    cancelar(form: NgForm) {
+        if (form.touched) {
+            if (confirm('Os dados serão perdidos. Deseja continuar?')) {
+                this.router.navigate(['../pessoas']);
+            }
+        }
+    }
 }

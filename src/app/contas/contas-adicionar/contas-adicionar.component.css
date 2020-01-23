@@ -28,7 +28,12 @@
     z-index: 1;
 }
 .linha {
-    justify-content: center;
+    padding: 0;
+    justify-content: space-between;
+}
+.linha > div {
+    padding: 0;
+    width: 100%;
     margin: 1rem 0;
 }
 .form-second-step {
@@ -66,5 +71,20 @@
     margin: .5rem auto;
     background-color: rgb(82, 20, 82);
     font-size: 1.6rem;
+}
+.btn.btn-pular {
+    background-color: rgb(82, 20, 82);
+    margin: 0 0 0 auto;
+    font-size: 1.6rem;
+}
+.modal.hidden {
+    display: none;
+}
 
+.ui-inputgroup span {
+    width: 40px;
+    min-width: 40px;
+}
+.linha input {
+    width: 100%;
 }

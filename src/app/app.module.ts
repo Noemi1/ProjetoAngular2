@@ -11,7 +11,6 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './home/login/login/login.component';
 import { PessoasModule } from './pessoas/pessoas.module';
 import { routing } from './app.routing';
-import { ToastrModule } from 'ngx-toastr';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,7 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    HomePageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +32,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PessoasModule,
     NgbModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

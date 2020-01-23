@@ -1,11 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { PessoasModel } from './../../shared/models/pessoas.model';
-import { ContasModel } from './../../shared/models/contas.model';
 import { ApiConnectionServicePessoas } from '../../shared/apiConnectionPessoas.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-pessoa-list',
@@ -15,13 +13,13 @@ import { ToastrService } from 'ngx-toastr';
 export class PessoaListComponent implements OnInit {
 
     selected: PessoasModel;
+    detail: PessoasModel;
     @Input() idPessoa: number;
-    contaPessoa: ContasModel[];
 
     constructor(
         private service: ApiConnectionServicePessoas,
         private toastr: ToastrService,
-        private http: HttpClient,
+        private router: Router,
     ) { }
 
     ngOnInit() {
@@ -62,5 +60,10 @@ export class PessoaListComponent implements OnInit {
                 }
             );
         }
+    }
+    verDetalhes(form: PessoasModel) {
+        this.router.navigate(['pessoas/pessoas-detail', this.idPessoa]);
+        this.detail = form;
+        return form;
     }
 }

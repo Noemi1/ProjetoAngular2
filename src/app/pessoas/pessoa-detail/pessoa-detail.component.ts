@@ -1,4 +1,9 @@
+import { PessoasModel } from './../../shared/models/pessoas.model';
+import { ApiConnectionServicePessoas } from './../../shared/apiConnectionPessoas.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { PessoaListComponent } from './../pessoa-list/pessoa-list.component';
 
 @Component({
   selector: 'app-pessoa-detail',
@@ -7,9 +12,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PessoaDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private service: PessoaListComponent,
+  ) { }
 
   ngOnInit() {
   }
-
 }

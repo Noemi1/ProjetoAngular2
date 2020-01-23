@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 
 import { ContasListComponent } from './../conta-list/contas-list.component';
 import { ApiConnectionContasService } from '../../shared/apiConnectionContas.service';
-import { ContasModel } from './../../shared/models/contas.model';
 
 @Component({
   selector: 'app-contas-details',

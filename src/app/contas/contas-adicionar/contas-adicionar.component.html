@@ -1,20 +1,17 @@
-<div class="modal" id="first">
+<div class="modal"  [class.hidden]="!this.hidden">
     <a [routerLink]="['../']"  class="modal-bg"></a>
     <div class="modal-content">
-        <div class="modal-header">
-            <span class="point"></span>
-            <span class="point"></span>
-        </div>
         <div class="cadastro">
             <div class="first-step">
                 <h1>Passo 1</h1>
-                <button class="btn add-cliente">Cadastrar novo cliente</button>
-                <button class="btn escolher-cliente">Escolher cliente existente</button>
+                <button class="btn add-cliente" (click)="cadastrarCliente()">Cadastrar novo cliente</button>
+                <button class="btn btn-pular" (click)="proximo(false)">Pular</button>
+                <p class="aviso">Tenha em mãos o Id de cadastro do cliente</p>
             </div>
         </div>
     </div>
 </div>
-<div class="modal">
+<div class="modal" [class.hidden]="this.hidden"> 
     <a [routerLink]="['../']"  class="modal-bg"></a>
     <div class="modal-content">
         <div class="modal-header">
@@ -23,30 +20,33 @@
         </div>
         <div class="cadastro">
             <div class="second-step">
-                <form action="" method="post" class="form-second-step col-xl-9 col-md-9 col-sm-12">
+                <form action="" method="post" class="form-second-step col-xl-11 col-md-11 col-sm-12">
                     <h1>Passo 2</h1>
-                    <div class="ui-inputgroup row linha col-xl-12 col-md-12 col-sm-12">
-                        <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
-                        <input type="text" pInputText placeholder="Numero da Conta" 
-                                class="col-xl-10 col-md-10 col-sm-10 inputMask" mask="99-9999"> 
+                    <div class="row linha">
+                        <div class="ui-inputgroup col-xl-7 col-md-7 col-sm-12">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                            <input type="text" pInputText placeholder="Numero da Conta" 
+                                class="inputMask" mask="99-9999"> 
+                        </div>    
+                        <div class="ui-inputgroup col-xl-4 col-md-4 col-sm-12">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
+                            <input type="text" placeholder="Agência" class="">         
+                        </div> 
+                        <div class="ui-inputgroup col-xl-4 col-md-4 col-sm-12">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
+                            <input type="text"  placeholder="Titular" class="">         
+                        </div>   
+                        <div class="ui-inputgroup col-xl-7 col-md-7 col-sm-12">
+                            <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
+                            <input type="text"  placeholder="Data de Abertura" class="">         
+                        </div>
                     </div>
 
-                    <div class="ui-inputgroup row linha col-xl-12 col-md-12 col-sm-12">
-                        <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
-                        <input type="text" placeholder="Agência" class="col-xl-10 col-md-10 col-sm-10">         
+                    <div class="row linha">
+                        <button type="submit" class="btn enviar-form col-xl-2 col-md-2 col-sm-3" title="Enviar Cadastro">
+                            <i class="pi pi-arrow-circle-right "></i>
+                        </button>
                     </div>
-
-                    <div class="ui-inputgroup row linha col-xl-12 col-md-12 col-sm-12">
-                        <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
-                        <input type="text"  placeholder="Data de Abertura" class="col-xl-10 col-md-10 col-sm-10">         
-                    </div>
-
-                    <div class="ui-inputgroup row linha col-xl-12 col-md-12 col-sm-12">
-                    </div>
-
-                    <button type="submit" class="btn enviar-form col-xl-2 col-md-2 col-sm-3" title="Enviar Cadastro">
-                        <i class="pi pi-arrow-circle-right "></i>
-                    </button>
                 </form>
             </div>
         </div>

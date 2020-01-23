@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 import { ContasListComponent } from './conta-list/contas-list.component';
 import { ContasDetailsComponent } from './conta-detail/contas-details.component';
@@ -12,6 +12,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule } from 'node_modules/primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputMaskModule } from 'primeng/inputmask';
+import { ToastrModule } from 'ngx-toastr';
+import { ContasEscolherClienteComponent } from './contas-escolher-cliente/contas-escolher-cliente.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
     imports: [
@@ -22,17 +25,18 @@ import { InputMaskModule } from 'primeng/inputmask';
         ButtonModule,
         InputMaskModule,
         FormsModule,
+        ToastrModule.forRoot(),
+        DropdownModule,
     ],
     exports: [],
     declarations: [
         ContasListComponent,
         ContasDetailsComponent,
-        ContasAdicionarComponent
+        ContasAdicionarComponent,
+        ContasEscolherClienteComponent,
     ],
     providers: [],
 
 })
 export class ContasModule {
-    public myModel = '3213213211';
-    public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 }

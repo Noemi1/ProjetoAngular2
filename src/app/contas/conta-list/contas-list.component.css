@@ -10,10 +10,11 @@
 .list-container tr {
     text-align: center;
     padding: 10px 0;
-    cursor: pointer;
+    
 }
-.list-container tr:hover {
+.list-container tr:hover:not(thead > tr) {
     background-color: rgba(22, 39, 56, 0.1);
+    cursor: pointer;
 }
 .list-container tr.selected {
     background-color: rgba(22, 39, 56, 0.17);

@@ -1,6 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 import { ApiConnectionContasService } from '../../shared/apiConnectionContas.service';
 import { ContasModel } from './../../shared/models/contas.model';
