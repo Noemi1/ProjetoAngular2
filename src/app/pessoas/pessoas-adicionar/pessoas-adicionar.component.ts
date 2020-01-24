@@ -79,6 +79,8 @@ export class PessoasAdicionarComponent implements OnInit {
             if (confirm('Os dados serão perdidos. Deseja continuar?')) {
                 this.router.navigate(['../pessoas']);
             }
+        } else {
+            this.router.navigate(['../pessoas']);
         }
     }
 }

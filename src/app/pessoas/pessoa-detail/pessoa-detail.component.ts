@@ -12,11 +12,15 @@ import { PessoaListComponent } from './../pessoa-list/pessoa-list.component';
 })
 export class PessoaDetailComponent implements OnInit {
 
+  oi: PessoasModel;
+
   constructor(
     private router: Router,
     private service: PessoaListComponent,
+    private pessoaDetalhe: PessoaListComponent,
   ) { }
 
   ngOnInit() {
   }
+
 }

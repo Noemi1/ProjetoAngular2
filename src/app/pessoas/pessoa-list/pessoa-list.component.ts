@@ -13,7 +13,6 @@ import { ApiConnectionServicePessoas } from '../../shared/apiConnectionPessoas.s
 export class PessoaListComponent implements OnInit {
 
     selected: PessoasModel;
-    detail: PessoasModel;
     @Input() idPessoa: number;
 
     constructor(
@@ -63,7 +62,7 @@ export class PessoaListComponent implements OnInit {
     }
     verDetalhes(form: PessoasModel) {
         this.router.navigate(['pessoas/pessoas-detail', this.idPessoa]);
-        this.detail = form;
+        console.log(form);
         return form;
     }
 }
