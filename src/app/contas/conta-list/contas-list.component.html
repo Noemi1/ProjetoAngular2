@@ -2,11 +2,9 @@
     <header class="wrapper-body header-options">
         <h2>Registros</h2>
         <div class="header-options-botoes" *ngIf="this.selected">
-            <a [routerLink]="['contas-detail/', idConta]" class="btn ver-detalhes" title="Ver Detalhes">
-                <i class="pi pi-file-o"></i>
-            </a>
-            <button class="btn excluir" title="Excluir Registro" (click)="onDelete(this.selected)"><i
-                    class="pi pi-trash"></i></button>
+            <button class="btn excluir" title="Excluir Registro" (click)="onDelete(this.selected)">
+                <i class="pi pi-trash"></i>
+            </button>
         </div>
         <a [routerLink]="['contas-adicionar']" class="btn adicionar" title="Adicionar Registro">
             <i class="pi pi-plus"></i>
@@ -24,7 +22,7 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item>
-                <tr (click)="onSelect(item)" [class.selected]="item === selected">
+                <tr (click)="onSelect(item)"  (dblclick)="verDetalhes(item)"  [class.selected]="item === selected"  [class.unselected]="item !== selected">
                     <td>{{ item.IdConta }}</td>
                     <td>{{ item.Agencia }}</td>
                     <td>{{ item.NumeroConta }}</td>

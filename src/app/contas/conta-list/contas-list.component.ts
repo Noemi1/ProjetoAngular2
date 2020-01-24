@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -13,10 +14,12 @@ export class ContasListComponent implements OnInit {
 
     selected: ContasModel;
     @Input() idConta: number;
+    conta: ContasModel;
 
     constructor(
         private service: ApiConnectionContasService,
         private toastr: ToastrService,
+        private router: Router,
     ) { }
 
     ngOnInit() {
@@ -25,7 +28,6 @@ export class ContasListComponent implements OnInit {
     onSelect(item: ContasModel) {
         if (this.selected !== item) {
             this.selected = item;
-            console.log(item);
             this.idConta = this.selected.IdConta;
             return this.idConta;
         } else {
@@ -34,23 +36,28 @@ export class ContasListComponent implements OnInit {
         }
     }
     onDelete(contas: ContasModel) {
-        if (confirm('Tem certeza que deseja deletar o registro?')) {
-            this.service.deleteConta(contas.IdConta).subscribe(
-                res => {
-                    this.service.refreshList();
-                    this.service.formData = {
-                        IdConta: 0,
-                        Agencia: '',
-                        NumeroConta: '',
-                        DataAbertura: '',
-                        IdPessoa: 0,
-                    };
-                },
-                err => {
-                    console.log(err);
-                    this.toastr.error('Delete unsuccessfully', 'Please select one row to delete');
-                }
-            );
-        }
+        this.service.deleteConta(contas.IdConta).subscribe(
+            res => {
+                this.service.formData = {
+                    IdConta: 0,
+                    Agencia: '',
+                    NumeroConta: '',
+                    DataAbertura: '',
+                    IdPessoa: 0,
+                };
+                this.service.refreshList();
+            },
+            err => {
+                console.log(err);
+                this.toastr.error('Delete unsuccessfully', 'Please select one row to delete');
+            }
+        );
+    }
+
+    verDetalhes(conta: ContasModel) {
+        this.router.navigate(['contas/contas-detail', this.idConta]);
+        this.conta = conta;
+        console.log(this.conta.IdConta);
+        return this.conta;
     }
 }

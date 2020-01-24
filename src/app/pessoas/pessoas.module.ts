@@ -6,6 +6,7 @@ import { PessoaDetailComponent } from './pessoa-detail/pessoa-detail.component';
 import { PessoaListComponent } from './pessoa-list/pessoa-list.component';
 import { PessoasRoutingModule } from './pessoas.routing.module';
 import { PessoasAdicionarComponent } from './pessoas-adicionar/pessoas-adicionar.component';
+import { ContasListComponent } from './../contas/conta-list/contas-list.component';
 
 // PrimeNG
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -29,7 +30,7 @@ import { InputMaskModule } from 'primeng/inputmask';
         PessoaListComponent,
         PessoasAdicionarComponent,
     ],
-    providers: [ NgForm ],
+    providers: [ NgForm, ContasListComponent ],
 
 })
 export class PessoasModule {

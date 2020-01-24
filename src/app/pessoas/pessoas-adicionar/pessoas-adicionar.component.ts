@@ -1,11 +1,9 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Router, } from '@angular/router';
 
 import { ApiConnectionServicePessoas } from './../../shared/apiConnectionPessoas.service';
-import { ToastrService } from 'ngx-toastr';
-// import * as Inputmask from 'inputmask';
-import { Router, } from '@angular/router';
-import { empty } from 'rxjs';
 
 @Component({
     selector: 'app-pessoas-adicionar',
@@ -38,15 +36,15 @@ export class PessoasAdicionarComponent implements OnInit {
             Cep: '',
         };
     }
-
     onSubmit(form: NgForm) {
         if (this.service.formData.IdPessoa === 0) {
             this.insertRecord(form);
+            console.log('if')
         } else {
+            console.log('else')
             this.updateRecord(form);
         }
     }
-
     insertRecord(form: NgForm) {
         this.service.postPaymentDetail().subscribe(
             res => {

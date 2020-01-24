@@ -1,9 +1,8 @@
-// import { IdPessoa } from './pessoas.model';
 
 export class ContasModel {
     IdConta: number;
     Agencia: string;
     NumeroConta: string;
     DataAbertura: string;
-    IdPessoa: number /* IdPessoa */;
+    IdPessoa: number;
 }

@@ -77,9 +77,9 @@ p-inputmask {
     display: flex;
     width: 101%;
     border-radius: 2px;
-    height: 101%;
-    margin-top: -.5px;
-    margin-left: -.5px;
+    height: 100%;
+    margin-top: 0px;
+    margin-left: 0;
     font-size: 1.6rem;
 }
 p-inputmask input {
@@ -88,8 +88,8 @@ p-inputmask input {
     font-size: 1.6rem;
     border-radius: 2px;
     height: 101%;
-    margin-top: -.5px;
-    margin-left: -.5px;
+    margin-top: 0;
+    margin-left: 0;
     font-size: 1.6rem;
 }
 input::-webkit-calendar-picker-indicator,
@@ -132,4 +132,11 @@ input::-webkit-inner-spin-button {
 .linha {
     padding: 0;
     justify-content: space-between;
+}
+
+input[type=date]::-webkit-datetime-edit{
+    color: #606060;
+}
+input[type=date]{
+    color: #000
 }

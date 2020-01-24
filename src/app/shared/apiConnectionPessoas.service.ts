@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { PessoasModel } from './models/pessoas.model';
 
-
 @Injectable({
   providedIn: 'root'
 })

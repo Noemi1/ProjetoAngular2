@@ -16,7 +16,6 @@ export class ContasDetailsComponent implements OnInit {
     private service: ApiConnectionContasService, ) { }
 
   ngOnInit() {
-    console.log(this.id.selected);
   }
   resetForm(form?: NgForm) {
     if (form != null) {
