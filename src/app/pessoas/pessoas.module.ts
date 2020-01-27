@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule } from 'node_modules/primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputMaskModule } from 'primeng/inputmask';
+import { ApiConnectionContasService } from '../shared/apiConnectionContas.service';
 
 @NgModule({
     imports: [

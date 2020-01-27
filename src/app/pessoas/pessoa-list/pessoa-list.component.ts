@@ -23,8 +23,6 @@ export class PessoaListComponent implements OnInit {
     conta: ContasModel;
 
 
-    conts: ContasModel;
-
     constructor(
         private service: ApiConnectionServicePessoas,
         private toastr: ToastrService,
@@ -36,6 +34,8 @@ export class PessoaListComponent implements OnInit {
     ngOnInit() {
         this.service.refreshList();
     }
+
+    // Selecionar item na lista
     onSelect(item: PessoasModel) {
         if (this.selected !== item) {
             this.selected = item;
@@ -47,54 +47,52 @@ export class PessoaListComponent implements OnInit {
             return this.selected;
         }
     }
+
+    // Validdacao de exclusao de pessoa e conta
     onDelete(pessoa: PessoasModel) {
-        // tslint:disable: no-var-keyword
-        // tslint:disable: forin
-        // tslint:disable: prefer-const
-        let a = 0;
-        let b: ContasModel[] = []
-        this.serviceContasAPI.getConta().forEach((e) => {
-            for (let i in e) {
-                if (pessoa.IdPessoa === e[i].IdPessoa) {
-                    // if (confirm('Esta conta está vinculada a outras contas. A conta ' + e[i].NumeroConta + ' será deletada. Continuar?')) {
-                    //     this.serviceContas.onDelete(e[i]);
-                    //     this.deletar(pessoa);
-                    // }
-                    a++;
-                    b.push(e[i]);
-                    return [a, b];
-                } else {
+        this.serviceContasAPI.getConta().forEach((e: ContasModel[]) => {
+            const i = e.filter((o: ContasModel) => o.IdPessoa === pessoa.IdPessoa);
+            if (i.length > 0) {
+                if (confirm('Existem contas vinculadas a esta conta. Deseja excluir?')) {
+                    // tslint:disable-next-line: forin
+                    for (const oi in i) {
+                        console.log(i[oi]);
+                        this.serviceContas.onDelete(i[oi]);
+                        this.deletar(pessoa);
+                    }
+                }
+            } else {
+                if (confirm('Tem certeza que deseja deletar o registro?')) {
                     this.deletar(pessoa);
                 }
             }
-            this.deletar(pessoa);
         });
-        console.log(b);
-        console.log(a);
     }
+
+    // Excluir pessoa
     deletar(pessoa: PessoasModel) {
-        if (confirm('Tem certeza que deseja deletar o registro?')) {
-            this.service.deletePaymentDetail(pessoa.IdPessoa).subscribe(
-                res => {
-                    this.service.refreshList();
-                    this.service.formData = {
-                        IdPessoa: 0,
-                        NomePessoa: '',
-                        DataNascPessoa: '',
-                        RgPessoa: '',
-                        CpfPessoa: '',
-                        Endereco: '',
-                        NumeroEnd: '',
-                        Cep: '',
-                    };
-                },
-                err => {
-                    console.log(err);
-                    this.toastr.error('Delete unsuccessfully', 'Please select one row to delete');
-                }
-            );
-        }
+        this.service.deletePaymentDetail(pessoa.IdPessoa).subscribe(
+            res => {
+                this.service.refreshList();
+                this.service.formData = {
+                    IdPessoa: 0,
+                    NomePessoa: '',
+                    DataNascPessoa: '',
+                    RgPessoa: '',
+                    CpfPessoa: '',
+                    Endereco: '',
+                    NumeroEnd: '',
+                    Cep: '',
+                };
+            },
+            err => {
+                console.log(err);
+                this.toastr.error('Delete unsuccessfully', 'Please select one row to delete');
+            }
+        );
     }
+
+    // Ver detalhes da pessoa
     verDetalhes(pessoa: PessoasModel) {
         this.router.navigate(['pessoas/pessoas-detail', this.idPessoa]);
         this.pessoa = pessoa;

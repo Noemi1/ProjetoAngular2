@@ -15,6 +15,7 @@ export class ContasListComponent implements OnInit {
     selected: ContasModel;
     @Input() idConta: number;
     conta: ContasModel;
+    list: ContasModel[];
 
     constructor(
         private service: ApiConnectionContasService,
@@ -24,6 +25,7 @@ export class ContasListComponent implements OnInit {
 
     ngOnInit() {
         this.service.refreshList();
+        this.list = this.service.listContas;
     }
     onSelect(item: ContasModel) {
         if (this.selected !== item) {

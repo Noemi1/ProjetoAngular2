@@ -10,7 +10,7 @@ export class ApiConnectionContasService {
 
   readonly rootURL = 'http://localhost:54966/api'; /*Configurar a Porta do Visual Studio aqui*/
 
-  formData: ContasModel;
+  public formData: ContasModel;
   listContas: ContasModel[];
 
   constructor(
@@ -32,6 +32,9 @@ export class ApiConnectionContasService {
       return this.http.delete(this.rootURL + '/contas/' + id);
   }
   getConta() {
-    return this.http.get(this.rootURL + '/contas')
+    return this.http.get(this.rootURL + '/contas');
+  }
+  getList() {
+    return this.listContas;
   }
 }

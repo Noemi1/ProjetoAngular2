@@ -39,9 +39,9 @@ export class PessoasAdicionarComponent implements OnInit {
     onSubmit(form: NgForm) {
         if (this.service.formData.IdPessoa === 0) {
             this.insertRecord(form);
-            console.log('if')
+            console.log('if');
         } else {
-            console.log('else')
+            console.log('else');
             this.updateRecord(form);
         }
     }
