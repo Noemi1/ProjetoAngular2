@@ -3,23 +3,27 @@
         <header class="wrapper-body header-options">
             <h2>Registros</h2>
                 <button class="btn excluir" *ngIf="this.selected" title="Excluir Registro" (click)="onDelete(this.selected)"><i class="pi pi-trash"></i></button>
-            
+
             <a [routerLink]="['pessoas-adicionar']"  class="btn adicionar" title="Adicionar Registro">
                 <i class="pi pi-plus"></i>
             </a>
         </header>
         <div class="wrapper-body list-container">
-            <p-table [value]="service.listPessoas" *ngIf="service.listPessoas">
-                <ng-template pTemplate="header">
+            <p-table [value]="service.listPessoas" *ngIf="service.listPessoas" [columns]="cols" [paginator]="true" [rows]="1">
+                <ng-template pTemplate="caption">
+                    <div style="text-align: right">
+                        <i class="pi pi-search" style="margin: 5px 10px auto 0"></i>
+                        <input type="text"
+                            pInputText
+                            size="50"
+                            placeholder="Global Filter"
+                            (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            style="width: auto">
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <th>Id</th>
-                        <th>Nome </th>
-                        <th>Nascimento </th>
-                        <th>Rg</th>
-                        <th>Cpf </th>
-                        <th>Endereco </th>
-                        <th>Numero</th>
-                        <th>Cep</th>
+                        <th *ngFor="let col of columns">{{ col.header }}</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-item >

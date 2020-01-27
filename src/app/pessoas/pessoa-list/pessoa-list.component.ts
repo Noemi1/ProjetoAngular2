@@ -19,9 +19,10 @@ export class PessoaListComponent implements OnInit {
     selected: PessoasModel;
     @Input() idPessoa: number;
     @Input() oi: PessoasModel;
+
+    cols: any[];
     pessoa: PessoasModel;
     conta: ContasModel;
-
 
     constructor(
         private service: ApiConnectionServicePessoas,
@@ -33,6 +34,33 @@ export class PessoaListComponent implements OnInit {
 
     ngOnInit() {
         this.service.refreshList();
+
+    // Tabela
+        // Header
+        this.cols = [
+            { field: 'IdPessoa', header: 'Id'},
+            { field: 'NomePessoa', header: 'Nome'},
+            { field: 'DataNascPessoa', header: 'Nascimento'},
+            { field: 'RgPessoa', header: 'Rg'},
+            { field: 'CpfPessoa', header: 'CPF'},
+            { field: 'Endereco', header: 'Endereço'},
+            { field: 'NumeroEnd', header: 'Número'},
+            { field: 'Cep', header: 'CEP'},
+        ];
+        // Filtro
+        /*
+        FilterUtils['custom'] = (value, filter): boolean => {
+            if (filter === undefined || filter === null || filter.trim() === '') {
+                return true;
+            }
+
+            if (value === undefined || value === null) {
+                return false;
+            }
+
+            return parseInt(filter) > value;
+        }
+        */
     }
 
     // Selecionar item na lista
@@ -95,9 +123,8 @@ export class PessoaListComponent implements OnInit {
     // Ver detalhes da pessoa
     verDetalhes(pessoa: PessoasModel) {
         this.router.navigate(['pessoas/pessoas-detail', this.idPessoa]);
-        this.pessoa = pessoa;
-        this.oi = this.pessoa;
-        return this.pessoa;
+        return pessoa;
     }
+
 
 }

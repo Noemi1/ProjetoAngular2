@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 *:focus {
-    outline: none;    
+    outline: none;
 }
 html {
     font-size: 62.5%;
@@ -126,7 +126,7 @@ input::-webkit-inner-spin-button {
     padding: 2rem;
     background-color: #fff;
     max-width: 730px;
-    position: relative; 
+    position: relative;
     z-index: 1;
 }
 .linha {
@@ -139,4 +139,11 @@ input[type=date]::-webkit-datetime-edit{
 }
 input[type=date]{
     color: #000
+}
+
+.main {
+    min-height: calc(100vh - 60px - 142px);
+}
+.list-container tbody tr:hover {
+    cursor: pointer;
 }

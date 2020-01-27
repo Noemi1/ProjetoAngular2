@@ -31,7 +31,7 @@ import { ApiConnectionContasService } from '../shared/apiConnectionContas.servic
         PessoaListComponent,
         PessoasAdicionarComponent,
     ],
-    providers: [ NgForm, ContasListComponent ],
+    providers: [ NgForm, ContasListComponent, PessoaListComponent ],
 
 })
 export class PessoasModule {
