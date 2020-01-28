@@ -3,37 +3,8 @@
     <div class="modal-content ui-g">
         <h2>Detalhes</h2>
 
-
-        <div *ngIf="this.dadosConta">
-            <form class="form-second-step col-xl-11 col-md-11 col-sm-12" #form autocomplete="on"
-                (submit)="salvarAlteracoes(form)">
-                <div class="row linha">
-                    <p>Id: {{ this.dadosConta.IdConta }}</p>
-
-
-                    <input
-                        [value]="this.dadosConta.Agencia"
-                        [readonly]="this.readonly"
-                        [disabled]='this.readonly'
-                        class="ui-g-12 ui-md-5 ui-lg-3">
-                </div>
-
-
-                <div class="row linha" *ngIf="!this.readonly">
-                    <button type="button" (click)="cancelar(form)" class="btn btn-cancelar col-xl-2 col-md-2 col-sm-3"
-                        title="Cancelar">
-                        <i class="pi pi-arrow-circle-left "></i>
-                    </button>
-                    <button type="submit" class="btn enviar-form col-xl-2 col-md-2 col-sm-3" title="Atualizar Cadastro"
-                        [disabled]="form.invalid">Salvar</button>
-                </div>
-                <div class="row linha">
-                    <a [routerLink]="['../../']" class="link-button">Voltar</a>
-                    <button type="button" (click)="readonlyInput(false)" class="" [hidden]="!this.readonly">Editar
-                        dados</button>
-                </div>
-            </form>
-
+        <div>
+            {{ dadosConta.IdConta }}
         </div>
 
     </div>

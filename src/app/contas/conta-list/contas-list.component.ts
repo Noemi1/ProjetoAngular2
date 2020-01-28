@@ -18,16 +18,17 @@ export class ContasListComponent implements OnInit {
     selected: ContasModel;
     cols: any[];
     contaDetalhes: ContasModel;
+    conta: ContasModel;
 
     constructor(
-        private service: ApiConnectionContasService,
+        private serviceApiContas: ApiConnectionContasService,
         private toastr: ToastrService,
         private router: Router,
         private serviceVerDetalhes: VerDetalhesService,
     ) { }
 
     ngOnInit() {
-        this.service.refreshList();
+        this.serviceApiContas.refreshList();
         this.cols = [
             { header: 'Id', field: 'IdConta' },
             { header: 'Agencia', field: 'Agencia' },
@@ -47,6 +48,7 @@ export class ContasListComponent implements OnInit {
             }
             return parseInt(filter) > value;
         };
+        this.serviceApiContas.getConta();
     }
     onSelect(item: ContasModel) {
         if (this.selected !== item) {
@@ -59,16 +61,16 @@ export class ContasListComponent implements OnInit {
         }
     }
     onDelete(contas: ContasModel) {
-        this.service.deleteConta(contas.IdConta).subscribe(
+        this.serviceApiContas.deleteConta(contas.IdConta).subscribe(
             res => {
-                this.service.formData = {
+                this.serviceApiContas.formData = {
                     IdConta: 0,
                     Agencia: '',
                     NumeroConta: '',
                     DataAbertura: '',
                     IdPessoa: 0,
                 };
-                this.service.refreshList();
+                this.serviceApiContas.refreshList();
             },
             err => {
                 console.log(err);
@@ -76,8 +78,13 @@ export class ContasListComponent implements OnInit {
             }
         );
     }
-    verDetalhes(conta: ContasModel) {
-        this.router.navigate(['contas/contas-detail', this.idConta]);
+    getContas(conta: ContasModel): void {
+        this.serviceApiContas.getContas().subscribe(() => this.conta = conta);
         this.serviceVerDetalhes.setData(conta);
+        this.router.navigate(['contas/contas-detail', this.idConta]);
     }
+    // verDetalhes(conta: ContasModel) {
+    //     this.router.navigate(['contas/contas-detail', this.idConta]);
+    //     this.serviceVerDetalhes.setData(conta);
+    // }
 }

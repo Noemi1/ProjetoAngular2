@@ -1,3 +1,4 @@
+import { ContasModel } from './../shared/models/contas.model';
 import { VerDetalhesService } from './ver-detalhes.service';
 import { PessoaListComponent } from './../pessoas/pessoa-list/pessoa-list.component';
 import { NgModule } from '@angular/core';
@@ -36,7 +37,8 @@ import { InputMaskModule } from 'primeng/inputmask';
     providers: [
         PessoaListComponent,
         VerDetalhesService,
-        ContasAdicionarComponent
+        ContasAdicionarComponent,
+        ContasModel
     ],
 
 })

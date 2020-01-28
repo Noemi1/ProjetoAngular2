@@ -11,7 +11,7 @@
         </a>
     </header>
     <div class="wrapper-body list-container">
-        <p-table [value]="service.listContas" *ngIf="service.listContas" [columns]='cols' [paginator]="true" [rows]="10" #dt>
+        <p-table [value]="serviceApiContas.listContas" *ngIf="serviceApiContas.listContas" [columns]='cols' [paginator]="true" [rows]="10" #dt>
             <ng-template pTemplate="caption">
                 <div style="text-align: right">
                     <i class="pi pi-search" style="margin: 5px 10px auto 0"></i>
@@ -29,7 +29,7 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item>
-                <tr (click)="onSelect(item)"  (dblclick)="verDetalhes(item)"  [class.selected]="item === selected"  [class.unselected]="item !== selected">
+                <tr (click)="onSelect(item)"  (dblclick)="getContas(item)"  [class.selected]="item === selected"  [class.unselected]="item !== selected">
                     <td>{{ item.IdConta }}</td>
                     <td>{{ item.Agencia }}</td>
                     <td>{{ item.NumeroConta }}</td>
