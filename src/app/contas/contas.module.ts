@@ -1,3 +1,4 @@
+import { VerDetalhesService } from './ver-detalhes.service';
 import { PessoaListComponent } from './../pessoas/pessoa-list/pessoa-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,7 +8,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { ContasListComponent } from './conta-list/contas-list.component';
 import { ContasDetailsComponent } from './conta-detail/contas-details.component';
 import { ContasAdicionarComponent } from './contas-adicionar/contas-adicionar.component';
-import { ContasEscolherClienteComponent } from './contas-escolher-cliente/contas-escolher-cliente.component';
 import { ContasRountingModule } from './contas.routing.module';
 
 // PrimeNG
@@ -32,9 +32,12 @@ import { InputMaskModule } from 'primeng/inputmask';
         ContasListComponent,
         ContasDetailsComponent,
         ContasAdicionarComponent,
-        ContasEscolherClienteComponent,
     ],
-    providers: [PessoaListComponent],
+    providers: [
+        PessoaListComponent,
+        VerDetalhesService,
+        ContasAdicionarComponent
+    ],
 
 })
 export class ContasModule {

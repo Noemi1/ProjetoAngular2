@@ -34,7 +34,4 @@ export class ApiConnectionContasService {
   getConta() {
     return this.http.get(this.rootURL + '/contas');
   }
-  getList() {
-    return this.listContas;
-  }
 }

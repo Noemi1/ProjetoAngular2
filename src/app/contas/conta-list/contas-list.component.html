@@ -11,14 +11,21 @@
         </a>
     </header>
     <div class="wrapper-body list-container">
-        <p-table [value]="service.listContas" *ngIf="service.listContas">
-            <ng-template pTemplate="header">
+        <p-table [value]="service.listContas" *ngIf="service.listContas" [columns]='cols' [paginator]="true" [rows]="10" #dt>
+            <ng-template pTemplate="caption">
+                <div style="text-align: right">
+                    <i class="pi pi-search" style="margin: 5px 10px auto 0"></i>
+                    <input type="text"
+                        pInputText
+                        size="50"
+                        placeholder="Global Filter"
+                        (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        style="width: auto">
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
                 <tr>
-                    <th>Id</th>
-                    <th>Agencia </th>
-                    <th>Conta </th>
-                    <th>Abertura</th>
-                    <th>Titular</th>
+                    <th *ngFor="let col of columns">{{ col.header }}</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item>

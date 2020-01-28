@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ContasAdicionarComponent } from './../contas-adicionar/contas-adicionar.component';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { ContasListComponent } from './../conta-list/contas-list.component';
-import { ApiConnectionContasService } from '../../shared/apiConnectionContas.service';
+import { VerDetalhesService } from './../ver-detalhes.service';
+import { ContasModel } from './../../shared/models/contas.model';
+import { ApiConnectionContasService } from 'src/app/shared/apiConnectionContas.service';
 
 @Component({
   selector: 'app-contas-details',
@@ -11,22 +14,28 @@ import { ApiConnectionContasService } from '../../shared/apiConnectionContas.ser
 })
 export class ContasDetailsComponent implements OnInit {
 
+  @Input() dadosConta: ContasModel;
+  readonly = true;
   constructor(
-    private id: ContasListComponent,
-    private service: ApiConnectionContasService, ) { }
+    private serviceVerDetalhes: VerDetalhesService,
+    private serviceApiContas: ApiConnectionContasService,
+    private contasAdicionar: ContasAdicionarComponent,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.dadosConta = this.serviceVerDetalhes.getData();
+    this.serviceApiContas.formData = this.dadosConta;
   }
-  resetForm(form?: NgForm) {
-    if (form != null) {
-        form.resetForm();
+
+  readonlyInput(enabled: boolean) {
+    this.readonly = enabled;
+  }
+  salvarAlteracoes(form: any) {
+    if (confirm('Deseja salvar as alterações?')) {
+      this.contasAdicionar.onSubmit(form);
+      this.router.navigate(['../contas']);
+
     }
-    this.service.formData = {
-      IdConta: 0,
-      Agencia: '',
-      NumeroConta: '',
-      DataAbertura: '',
-      IdPessoa: 0,
-    };
   }
 }

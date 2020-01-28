@@ -26,6 +26,11 @@ body {
 input {
     padding: 0 0 0 1rem;
 }
+a {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
 .btn {
     margin: 0 0 0 10px;
     padding: 10px;
@@ -146,4 +151,11 @@ input[type=date]{
 }
 .list-container tbody tr:hover {
     cursor: pointer;
+}
+button, .link-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
 }

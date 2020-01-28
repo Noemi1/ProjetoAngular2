@@ -1,3 +1,4 @@
+import { PessoasModel } from './../shared/models/pessoas.model';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -31,7 +32,7 @@ import { ApiConnectionContasService } from '../shared/apiConnectionContas.servic
         PessoaListComponent,
         PessoasAdicionarComponent,
     ],
-    providers: [ NgForm, ContasListComponent, PessoaListComponent ],
+    providers: [ NgForm, ContasListComponent, PessoaListComponent, PessoasModel ],
 
 })
 export class PessoasModule {

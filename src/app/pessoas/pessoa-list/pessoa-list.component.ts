@@ -1,13 +1,15 @@
 import { ToastrService } from 'ngx-toastr';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 import { ApiConnectionServicePessoas } from '../../shared/apiConnectionPessoas.service';
 import { ApiConnectionContasService } from 'src/app/shared/apiConnectionContas.service';
 import { ContasModel } from './../../shared/models/contas.model';
 import { ContasListComponent } from './../../contas/conta-list/contas-list.component';
 import { PessoasModel } from './../../shared/models/pessoas.model';
-import { zip } from 'rxjs';
+import { TableModule } from 'primeng/table';
+import { FilterUtils } from 'primeng/utils';
 
 @Component({
     selector: 'app-pessoa-list',
@@ -48,19 +50,17 @@ export class PessoaListComponent implements OnInit {
             { field: 'Cep', header: 'CEP'},
         ];
         // Filtro
-        /*
+        // tslint:disable: no-string-literal
+        // tslint:disable: radix
         FilterUtils['custom'] = (value, filter): boolean => {
             if (filter === undefined || filter === null || filter.trim() === '') {
                 return true;
             }
-
             if (value === undefined || value === null) {
                 return false;
             }
-
             return parseInt(filter) > value;
-        }
-        */
+        };
     }
 
     // Selecionar item na lista

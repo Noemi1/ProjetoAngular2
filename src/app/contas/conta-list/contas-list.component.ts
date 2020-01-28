@@ -1,6 +1,8 @@
+import { VerDetalhesService } from './../ver-detalhes.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { FilterUtils } from 'primeng/utils';
 
 import { ApiConnectionContasService } from '../../shared/apiConnectionContas.service';
 import { ContasModel } from './../../shared/models/contas.model';
@@ -12,20 +14,39 @@ import { ContasModel } from './../../shared/models/contas.model';
 })
 export class ContasListComponent implements OnInit {
 
-    selected: ContasModel;
     @Input() idConta: number;
-    conta: ContasModel;
-    list: ContasModel[];
+    selected: ContasModel;
+    cols: any[];
+    contaDetalhes: ContasModel;
 
     constructor(
         private service: ApiConnectionContasService,
         private toastr: ToastrService,
         private router: Router,
+        private serviceVerDetalhes: VerDetalhesService,
     ) { }
 
     ngOnInit() {
         this.service.refreshList();
-        this.list = this.service.listContas;
+        this.cols = [
+            { header: 'Id', field: 'IdConta' },
+            { header: 'Agencia', field: 'Agencia' },
+            { header: 'Conta', field: 'NUmeroConta' },
+            { header: 'Abertura', field: 'DataAbertura' },
+            { header: 'Titular', field: 'IdPessoa' },
+        ];
+
+        // tslint:disable: no-string-literal
+        // tslint:disable: radix
+        FilterUtils['custom'] = (value, filter): boolean => {
+            if (filter === undefined || filter === null || filter.trim() === '') {
+                return true;
+            }
+            if (value === undefined || value === null) {
+                return false;
+            }
+            return parseInt(filter) > value;
+        };
     }
     onSelect(item: ContasModel) {
         if (this.selected !== item) {
@@ -55,11 +76,8 @@ export class ContasListComponent implements OnInit {
             }
         );
     }
-
     verDetalhes(conta: ContasModel) {
         this.router.navigate(['contas/contas-detail', this.idConta]);
-        this.conta = conta;
-        console.log(this.conta.IdConta);
-        return this.conta;
+        this.serviceVerDetalhes.setData(conta);
     }
 }
