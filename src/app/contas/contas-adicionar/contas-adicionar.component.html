@@ -5,9 +5,9 @@
             <div class="first-step">
                 <h1>Passo 1</h1>
                 <div class="col-xl-6 col-md-6 col-sm-12  box-center">
-                    <button class="btn add-cliente col-xl-12 col-md-12 col-sm-12" (click)="cadastrarCliente()">Cadastrar novo cliente</button>
+                    <button class="btn add-cliente col-xl-12 col-md-12 col-sm-12" (click)="cadastrarCliente()">Cadastrar cliente</button>
                     <div class="linha row box-center">
-                        <button class="btn btn-cancelar col-xl-5 col-md-5 col-sm-12" (click)="cancelar(form)">Cancelar</button>
+                        <button class="btn btn-cancelar col-xl-5 col-md-5 col-sm-12" (click)="cancelar()">Cancelar</button>
                         <button class="btn btn-pular col-xl-5 col-md-5 col-sm-12" (click)="proximo(false)">Pular</button>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
         </div>
     </div>
 </div>
-<div class="modal" [class.hidden]="this.hidden"> 
+<div class="modal" [class.hidden]="this.hidden">
     <a [routerLink]="['../']"  class="modal-bg"></a>
     <div class="modal-content">
         <div class="cadastro">
@@ -28,44 +28,45 @@
                     <div class="row linha">
                         <div class="ui-inputgroup col-xl-7 col-md-7 col-sm-12">
                             <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                            <p-inputMask
+                            <input
                                 type="text"
                                 pInputText
                                 placeholder="Numero da Conta"
                                 required
                                 #numConta="ngModel"
                                 name="numConta"
-                                [(ngModel)]="service.formData.NumeroConta"
-                                mask="999999-9"
-                            ></p-inputMask>
-                        </div>    
+                                mask="000000-0"
+                                [(ngModel)]="service.formData.NumConta"
+                            >
+                        </div>
                         <div class="ui-inputgroup col-xl-4 col-md-4 col-sm-12">
                             <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
-                            <input 
+                            <input
                                 type="text"
                                 placeholder="Agência"
                                 required
+                                mask="0000"
                                 maxlength="4"
                                 minlength="4"
                                 #agencia="ngModel"
                                 name="agencia"
                                 [(ngModel)]="service.formData.Agencia"
-                            >         
-                        </div> 
+                            >
+                        </div>
                         <div class="ui-inputgroup col-xl-4 col-md-4 col-sm-12">
                             <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
-                            <input type="text"  
-                                placeholder="Titular" 
+                            <input type="text"
+                                placeholder="Titular"
                                 required
                                 #titular="ngModel"
                                 name="titular"
                                 [(ngModel)]="service.formData.IdPessoa"
-                            >         
-                        </div>   
+                            >
+                        </div>
                         <div class="ui-inputgroup col-xl-7 col-md-7 col-sm-12">
                             <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
-                            <input 
-                                type="date"  
+                            <input
+                                type="date"
                                 placeholder="Data de Abertura"
                                 required
                                 min="1980-01-01" max="2010-01-01"
@@ -73,21 +74,21 @@
                                 #dataAbertura="ngModel"
                                 name="dataAbertura"
                                 [(ngModel)]="service.formData.DataAbertura"
-                            >    
+                            >
                         </div>
                     </div>
 
                     <div class="row linha">
-                        
-                        <button type="button" (click)="cancelar(form)" 
+
+                        <button type="button" (click)="cancelar(form)"
                             class="btn btn-cancelar col-xl-2 col-md-2 col-sm-3" title="voltar">
                             <i class="pi pi-arrow-circle-left "></i>
                         </button>
 
-                        <button type="submit" 
-                        class="btn enviar-form col-xl-2 col-md-2 col-sm-3" 
-                        title="Enviar Cadastro"
-                        [disabled]="form.invalid"
+                        <button type="submit"
+                            class="btn enviar-form col-xl-2 col-md-2 col-sm-3"
+                            title="Enviar Cadastro"
+                            [disabled]="form.invalid"
                         >
                             <i class="pi pi-arrow-circle-right "></i>
                         </button>

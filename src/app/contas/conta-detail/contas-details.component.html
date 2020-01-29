@@ -1,11 +1,64 @@
 <div class="modal">
     <a [routerLink]="['../../']" class="modal-bg"></a>
-    <div class="modal-content ui-g">
+    <div class="modal-content">
         <h2>Detalhes</h2>
+        <form class="form-editar" #form="ngForm" (submit)="salvarAlteracoes(form)">
+            <div class="header-form-editar">
+                <button type="button" class="btn-deletar" (click)="deletarConta(form)">Deletar</button>
+                <button type="button" (click)="habilitarEdicao()" class="btn-habilitarEdicao">{{ this.textBtnHabilidarEdicao }}</button>
+                <button (click)="voltar(form)" class="btn-voltar">Voltar</button>
+                <button type="submit" class="btn-editar">Editar</button>
+            </div>
+            <div class="form-content" [class.readonly]="this.desabilitar" [class.form-habilitado]="!this.desabilitar">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon readonly ">Id:</span>
+                    <input type="text"
+                        pInputText
+                        [value]="conta.IdConta"
+                        readonly
+                    >
+                </div>
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon">Agencia:</span>
+                    <input type="text"
+                        pInputText
+                        required
+                        mask="9999"
+                        [value]="conta.Agencia"
+                        [readonly]="this.desabilitar"
+                        maxlength="4"
+                        minlength="4"
+                    >
+                </div>
+                <div class="ui-inputgroup ">
+                    <span class="ui-inputgroup-addon">Conta:</span>
+                    <input type="text"
+                        pInputText
+                        required
+                        mask="999999-9"
+                        [value]="conta.NumeroConta"
+                        [readonly]="this.desabilitar"
 
-        <div>
-            {{ dadosConta.IdConta }}
-        </div>
-
+                    >
+                </div>
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon">Data de Abertura:</span>
+                    <input type="date"
+                        required
+                        [value]="conta.DataAbertura"
+                        [readonly]="this.desabilitar"
+                    >
+                </div>
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon">Titular:</span>
+                    <input type="text"
+                        required
+                        pInputText
+                        [value]="conta.IdPessoa"
+                        [readonly]="this.desabilitar"
+                    >
+                </div>
+            </div>
+        </form>
     </div>
 </div>

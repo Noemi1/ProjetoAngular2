@@ -28,7 +28,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-item let-columns="columns">
-                    <tr (click)="onSelect(item)" (dblclick)="verDetalhes(item)" [class.selected]="item === selected" [class.unselected]="item !== selected">
+                    <tr (click)="verDetalhesMobile(item)" [class.selected]="item === selected" [class.unselected]="item !== selected">
                         <td> {{ item.IdPessoa }} </td>
                         <td> {{ item.NomePessoa }} </td>
                         <td> {{ item.DataNascPessoa }} </td>

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { ContasModel } from './models/contas.model';
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
@@ -15,13 +15,9 @@ export class ApiConnectionContasService {
 
     public formData: ContasModel;
     listContas: ContasModel[];
-    array = [];
-    a: any[] = [];
+
     constructor(
         private http: HttpClient,
-        private contas: ContasModel,
-
-        private activatedRoute: ActivatedRoute,
     ) { }
 
     refreshList() {
@@ -38,15 +34,8 @@ export class ApiConnectionContasService {
     deleteConta(id) {
         return this.http.delete(this.rootURL + '/contas/' + id);
     }
-    getContas(): Observable<ContasModel[]> {
-        this.http.get(this.rootURL + '/contas').forEach(e => {
-            this.a.push(e);
-        })
-        return of(this.a);
+    getContas() {
+        return this.http.get(this.rootURL + '/contas');
     }
 
-    getConta() {
-        const id = this.activatedRoute.snapshot.paramMap.get('id');
-        return of(this.a.find(conta => conta.IdConta === id));
-    }
 }

@@ -1,5 +1,4 @@
 import { ContasModel } from './../shared/models/contas.model';
-import { VerDetalhesService } from './ver-detalhes.service';
 import { PessoaListComponent } from './../pessoas/pessoa-list/pessoa-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,8 +14,10 @@ import { ContasRountingModule } from './contas.routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule } from 'node_modules/primeng/table';
 import { ButtonModule } from 'primeng/button';
-import { InputMaskModule } from 'primeng/inputmask';
+// import { InputMaskModule } from 'primeng/inputmask';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
+export let options: Partial<IConfig> | (() => Partial<IConfig>);
 @NgModule({
     imports: [
         CommonModule,
@@ -24,9 +25,10 @@ import { InputMaskModule } from 'primeng/inputmask';
         TableModule,
         NgbModule,
         ButtonModule,
-        InputMaskModule,
+        // InputMaskModule,
         FormsModule,
         ToastrModule.forRoot(),
+        NgxMaskModule.forRoot(options),
     ],
     exports: [],
     declarations: [
@@ -36,9 +38,8 @@ import { InputMaskModule } from 'primeng/inputmask';
     ],
     providers: [
         PessoaListComponent,
-        VerDetalhesService,
         ContasAdicionarComponent,
-        ContasModel
+        ContasModel,
     ],
 
 })

@@ -159,3 +159,7 @@ button, .link-button {
     padding: 10px;
 
 }
+.ui-inputgroup-addon {
+    width: auto!important;
+    min-width: 40px!important;
+}

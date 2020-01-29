@@ -13,8 +13,6 @@ import { ApiConnectionContasService } from 'src/app/shared/apiConnectionContas.s
 })
 export class ContasAdicionarComponent implements OnInit {
 
-    d: Date = new Date();
-
     constructor(
         private router: Router,
         private service: ApiConnectionContasService,
@@ -22,16 +20,13 @@ export class ContasAdicionarComponent implements OnInit {
     ) { }
 
     hidden: boolean;
-    date: string;
+
     ngOnInit() {
         this.hidden = true;
         this.resetForm();
     }
     cadastrarCliente() {
         this.router.navigate(['pessoas', 'pessoas-adicionar']);
-    }
-    escolherCliente() {
-        this.router.navigate(['contas', 'contas-adicionar', 'escolher-cliente']);
     }
     proximo(hidden: boolean) {
         this.hidden = hidden;
@@ -53,6 +48,7 @@ export class ContasAdicionarComponent implements OnInit {
         if (this.service.formData.IdConta === 0) {
             this.insertRecord(form);
         } else {
+            console.log(form);
             this.updateRecord(form);
         }
     }
@@ -74,7 +70,7 @@ export class ContasAdicionarComponent implements OnInit {
         this.service.putPaymentDetail().subscribe(
             res => {
                 this.toastr.success('Sucesso', 'Atualizado com Sucesso!!');
-                this.service.refreshList();
+                this.router.navigate(['../contas']);
             },
             err => {
                 console.log(err);
@@ -82,7 +78,7 @@ export class ContasAdicionarComponent implements OnInit {
             }
         );
     }
-    cancelar(form: NgForm) {
+    cancelar(form?: NgForm) {
         if (this.hidden !== false) {
             this.router.navigate(['../contas']);
         } else {

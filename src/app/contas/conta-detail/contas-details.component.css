@@ -1,0 +1,53 @@
+button {
+    color: #fff;
+}
+.header-form-editar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 0;
+}
+.header-form-editar button {
+    min-width: 20%;
+    padding-left: 1.5rem;
+    padding-right: 2rem;
+}
+.form-content {
+    margin: 20px 0 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+.form-content > div {
+    margin: 10px 0;
+    padding: 0;
+}
+.btn-voltar {
+    background-color: brown;
+}
+.btn-habilitarEdicao {
+    background-color: rgb(201, 132, 5);
+}
+.btn-deletar {
+    background-color: rgb(202, 18, 18);
+}
+.btn-editar {
+    background-color: rgb(30, 121, 30);
+}
+.form-editar input {
+    padding: 3px 15px;
+    width: min-content;
+}
+.form-editar input[readonly] {
+    background-color: transparent;
+    border: .5px rgb(230, 230, 230) solid;
+}
+
+.readonly span {
+    color: rgb(80, 80, 80);
+}
+.form-habilitado span {
+    background-color: rgb(64, 127, 199)!important;
+    color: #fff!important;
+    border-color:  rgb(64, 127, 199)!important;
+}

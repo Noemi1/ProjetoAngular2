@@ -1,7 +1,6 @@
-import { VerDetalhesService } from './../ver-detalhes.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FilterUtils } from 'primeng/utils';
 
 import { ApiConnectionContasService } from '../../shared/apiConnectionContas.service';
@@ -17,14 +16,12 @@ export class ContasListComponent implements OnInit {
     @Input() idConta: number;
     selected: ContasModel;
     cols: any[];
-    contaDetalhes: ContasModel;
-    conta: ContasModel;
+    private touchTime = 0;
 
     constructor(
         private serviceApiContas: ApiConnectionContasService,
         private toastr: ToastrService,
         private router: Router,
-        private serviceVerDetalhes: VerDetalhesService,
     ) { }
 
     ngOnInit() {
@@ -48,7 +45,7 @@ export class ContasListComponent implements OnInit {
             }
             return parseInt(filter) > value;
         };
-        this.serviceApiContas.getConta();
+
     }
     onSelect(item: ContasModel) {
         if (this.selected !== item) {
@@ -58,6 +55,11 @@ export class ContasListComponent implements OnInit {
         } else {
             this.selected = null;
             return this.selected;
+        }
+    }
+    deletarConta(conta: ContasModel) {
+        if (confirm('Tem certeza que deseja deletar o registro?')) {
+            this.onDelete(conta);
         }
     }
     onDelete(contas: ContasModel) {
@@ -78,13 +80,22 @@ export class ContasListComponent implements OnInit {
             }
         );
     }
-    getContas(conta: ContasModel): void {
-        this.serviceApiContas.getContas().subscribe(() => this.conta = conta);
-        this.serviceVerDetalhes.setData(conta);
-        this.router.navigate(['contas/contas-detail', this.idConta]);
+    verDetalhesMobile(item: any) {
+        if (this.touchTime === 0) {
+            // set first click
+            this.onSelect(item);
+            this.touchTime = new Date().getTime();
+        } else {
+            // compare first click to this click and see if they occurred within double click threshold
+            if (((new Date().getTime()) - this.touchTime) < 500) {
+                // double click occurred
+                this.router.navigate(['contas/contas-detail', this.idConta]);
+                this.touchTime = 0;
+            } else {
+                // not a double click so set as a new first click
+                this.onSelect(item);
+                this.touchTime = new Date().getTime();
+            }
+        }
     }
-    // verDetalhes(conta: ContasModel) {
-    //     this.router.navigate(['contas/contas-detail', this.idConta]);
-    //     this.serviceVerDetalhes.setData(conta);
-    // }
 }

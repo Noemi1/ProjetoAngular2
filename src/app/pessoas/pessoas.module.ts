@@ -14,7 +14,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule } from 'node_modules/primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputMaskModule } from 'primeng/inputmask';
-import { ApiConnectionContasService } from '../shared/apiConnectionContas.service';
+
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
 @NgModule({
     imports: [
@@ -24,15 +26,21 @@ import { ApiConnectionContasService } from '../shared/apiConnectionContas.servic
         PessoasRoutingModule,
         TableModule,
         ButtonModule,
-        InputMaskModule,
+        // InputMaskModule,
+        NgxMaskModule.forRoot(options),
     ],
-    exports: [    ],
+    exports: [],
     declarations: [
         PessoaDetailComponent,
         PessoaListComponent,
         PessoasAdicionarComponent,
     ],
-    providers: [ NgForm, ContasListComponent, PessoaListComponent, PessoasModel ],
+    providers: [
+        NgForm,
+        ContasListComponent,
+        PessoaListComponent,
+        PessoasModel
+    ],
 
 })
 export class PessoasModule {

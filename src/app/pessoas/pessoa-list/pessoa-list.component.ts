@@ -1,14 +1,12 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 import { ApiConnectionServicePessoas } from '../../shared/apiConnectionPessoas.service';
 import { ApiConnectionContasService } from 'src/app/shared/apiConnectionContas.service';
 import { ContasModel } from './../../shared/models/contas.model';
 import { ContasListComponent } from './../../contas/conta-list/contas-list.component';
 import { PessoasModel } from './../../shared/models/pessoas.model';
-import { TableModule } from 'primeng/table';
 import { FilterUtils } from 'primeng/utils';
 
 @Component({
@@ -18,13 +16,10 @@ import { FilterUtils } from 'primeng/utils';
 })
 export class PessoaListComponent implements OnInit {
 
-    selected: PessoasModel;
     @Input() idPessoa: number;
-    @Input() oi: PessoasModel;
-
+    private touchTime = 0;
     cols: any[];
-    pessoa: PessoasModel;
-    conta: ContasModel;
+    selected: PessoasModel;
 
     constructor(
         private service: ApiConnectionServicePessoas,
@@ -37,17 +32,17 @@ export class PessoaListComponent implements OnInit {
     ngOnInit() {
         this.service.refreshList();
 
-    // Tabela
+        // Tabela
         // Header
         this.cols = [
-            { field: 'IdPessoa', header: 'Id'},
-            { field: 'NomePessoa', header: 'Nome'},
-            { field: 'DataNascPessoa', header: 'Nascimento'},
-            { field: 'RgPessoa', header: 'Rg'},
-            { field: 'CpfPessoa', header: 'CPF'},
-            { field: 'Endereco', header: 'Endereço'},
-            { field: 'NumeroEnd', header: 'Número'},
-            { field: 'Cep', header: 'CEP'},
+            { field: 'IdPessoa', header: 'Id' },
+            { field: 'NomePessoa', header: 'Nome' },
+            { field: 'DataNascPessoa', header: 'Nascimento' },
+            { field: 'RgPessoa', header: 'Rg' },
+            { field: 'CpfPessoa', header: 'CPF' },
+            { field: 'Endereco', header: 'Endereço' },
+            { field: 'NumeroEnd', header: 'Número' },
+            { field: 'Cep', header: 'CEP' },
         ];
         // Filtro
         // tslint:disable: no-string-literal
@@ -78,7 +73,7 @@ export class PessoaListComponent implements OnInit {
 
     // Validdacao de exclusao de pessoa e conta
     onDelete(pessoa: PessoasModel) {
-        this.serviceContasAPI.getConta().forEach((e: ContasModel[]) => {
+        this.serviceContasAPI.getContas().forEach((e: ContasModel[]) => {
             const i = e.filter((o: ContasModel) => o.IdPessoa === pessoa.IdPessoa);
             if (i.length > 0) {
                 if (confirm('Existem contas vinculadas a esta conta. Deseja excluir?')) {
@@ -90,9 +85,7 @@ export class PessoaListComponent implements OnInit {
                     }
                 }
             } else {
-                if (confirm('Tem certeza que deseja deletar o registro?')) {
-                    this.deletar(pessoa);
-                }
+                this.deletar(pessoa);
             }
         });
     }
@@ -121,9 +114,23 @@ export class PessoaListComponent implements OnInit {
     }
 
     // Ver detalhes da pessoa
-    verDetalhes(pessoa: PessoasModel) {
-        this.router.navigate(['pessoas/pessoas-detail', this.idPessoa]);
-        return pessoa;
+    verDetalhesMobile(pessoa: PessoasModel) {
+        if (this.touchTime === 0) {
+            // set first click
+            this.onSelect(pessoa);
+            this.touchTime = new Date().getTime();
+        } else {
+            // compare first click to this click and see if they occurred within double click threshold
+            if (((new Date().getTime()) - this.touchTime) < 500) {
+                // double click occurred
+                this.router.navigate(['pessoas/pessoas-detail', this.idPessoa]);
+                this.touchTime = 0;
+            } else {
+                // not a double click so set as a new first click
+                this.onSelect(pessoa);
+                this.touchTime = new Date().getTime();
+            }
+        }
     }
 
 

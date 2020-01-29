@@ -35,39 +35,39 @@
                         </div>
                         <div class="ui-inputgroup col-xl-4 col-md-4 col-sm-5">
                             <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
-                            <p-inputMask type="text" class=""
+                            <input type="text" class=""
                                 placeholder="Rg"
                                 pInputText
                                 required
                                 #rg="ngModel"
                                 name="rg"
                                 [(ngModel)]="service.formData.RgPessoa"
-                                mask="99.999.999-9"
-                            ></p-inputMask>
+                                mask="00.000.000-A"
+                            >
                         </div>
                         <div class="ui-inputgroup col-xl-4 col-md-4 col-sm-6">
                             <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
-                            <p-inputMask type="text" class=""
+                            <input type="text" class=""
                                 placeholder="CPF"
                                 pInputText
                                 required
                                 #cpf="ngModel"
                                 name="cpf"
                                 [(ngModel)]="service.formData.CpfPessoa"
-                                mask="999.999.999-99"
-                            ></p-inputMask>
+                                mask="000.000.000-00"
+                            >
                         </div>
                         <div class="ui-inputgroup col-xl-3 col-md-3 col-sm-12">
                             <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
-                            <p-inputMask type="text" class=""
+                            <input type="text" class=""
                                 placeholder="CEP"
                                 pInputText
                                 required
                                 #cep="ngModel"
                                 name="cep"
                                 [(ngModel)]="service.formData.cep"
-                                mask="99999-999"
-                            ></p-inputMask>
+                                mask="00000-000"
+                            >
                         </div>
 
                         <div class="ui-inputgroup col-xl-8 col-md-8 col-sm-8">

@@ -1,10 +1,11 @@
-import { Router, ActivatedRoute } from '@angular/router';
-import { ContasAdicionarComponent } from './../contas-adicionar/contas-adicionar.component';
-import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
-import { VerDetalhesService } from './../ver-detalhes.service';
 import { ContasModel } from './../../shared/models/contas.model';
+import { ContasListComponent } from './../conta-list/contas-list.component';
+import { ContasAdicionarComponent } from './../contas-adicionar/contas-adicionar.component';
 import { ApiConnectionContasService } from 'src/app/shared/apiConnectionContas.service';
 
 @Component({
@@ -14,29 +15,80 @@ import { ApiConnectionContasService } from 'src/app/shared/apiConnectionContas.s
 })
 export class ContasDetailsComponent implements OnInit {
 
-    @Input() dadosConta: ContasModel;
-    readonly = true;
-    conta: ContasModel;
+    conta = ContasModel as object;
+    contaDeletar: ContasModel;
+    desabilitar = true;
+    textBtnHabilidarEdicao = 'Habilitar Edição';
+    id = + this.activatedRoute.snapshot.paramMap.get('id');
+
     constructor(
-        private serviceVerDetalhes: VerDetalhesService,
-        private serviceApiContas: ApiConnectionContasService,
-        private contasAdicionar: ContasAdicionarComponent,
         private router: Router,
         private activatedRoute: ActivatedRoute,
+        private location: Location,
+        private update: ContasAdicionarComponent,
+        private serviceApiContas: ApiConnectionContasService,
+        private deletar: ContasListComponent,
     ) { }
 
     ngOnInit() {
-        this.dadosConta = this.serviceVerDetalhes.getData();
-        this.serviceApiContas.formData = this.dadosConta;
+        this.getContaDetalhe();
+        this.serviceApiContas.refreshList();
     }
+    getContaDetalhe() {
+        this.serviceApiContas.getContas().forEach(e => {
+            // tslint:disable: forin
+            for (const key in e) {
+                if ((e[key])) {
+                    if (e[key].IdConta === this.id) {
+                        this.conta = e[key];
+                    }
+                }
+            }
+            return this.conta;
+        });
+    }
+    voltar(form: NgForm) {
+        if (form.untouched) {
+            this.location.back();
+        } else {
+            if ( confirm('Você pode perder as alterações, deseja sair?') ) {
+                this.location.back();
 
-    readonlyInput(enabled: boolean) {
-        this.readonly = enabled;
-    }
-    salvarAlteracoes(form: any) {
-        if (confirm('Deseja salvar as alterações?')) {
-            this.contasAdicionar.onSubmit(form);
-            this.router.navigate(['../contas']);
+            }
         }
     }
+    habilitarEdicao(): boolean {
+        this.desabilitar = !this.desabilitar;
+        if (this.desabilitar) {
+            this.textBtnHabilidarEdicao = 'Habilitar Edição';
+        } else {
+            this.textBtnHabilidarEdicao = 'Desabilitar Edição';
+        }
+        return this.desabilitar;
+    }
+    deletarConta() {
+        if (confirm('Os dados não serão recuperados, deseja continuar?')) {
+            this.serviceApiContas.getContas().forEach(e => {
+                // tslint:disable: forin
+                for (const key in e) {
+                    if ((e[key])) {
+                        if (e[key].IdConta === this.id) {
+                            this.deletar.onDelete(e[key]);
+                            this.serviceApiContas.refreshList();
+                            this.location.back();
+                        }
+                    }
+                }
+                return this.conta;
+            });
+
+        }
+    }
+    // salvarAlteracoes(form: any) {
+    //     if (confirm('Deseja salvar as alterações?')) {
+    //         this.serviceApiContas.formData = form;
+    //         this.update.onSubmit(form);
+    //         this.router.navigate(['../contas']);
+    //     }
+    // }
 }
