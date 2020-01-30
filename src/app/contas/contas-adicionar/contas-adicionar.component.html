@@ -36,7 +36,7 @@
                                 #numConta="ngModel"
                                 name="numConta"
                                 mask="000000-0"
-                                [(ngModel)]="service.formData.NumConta"
+                                [(ngModel)]="service.formData.NumeroConta"
                             >
                         </div>
                         <div class="ui-inputgroup col-xl-4 col-md-4 col-sm-12">
@@ -66,13 +66,13 @@
                         <div class="ui-inputgroup col-xl-7 col-md-7 col-sm-12">
                             <span class="ui-inputgroup-addon"><i class="pi pi-user" ></i></span>
                             <input
-                                type="date"
+                                type="text"
                                 placeholder="Data de Abertura"
                                 required
-                                min="1980-01-01" max="2010-01-01"
                                 id="dataAberturaConta"
                                 #dataAbertura="ngModel"
                                 name="dataAbertura"
+                                mask="00/00/0000"
                                 [(ngModel)]="service.formData.DataAbertura"
                             >
                         </div>

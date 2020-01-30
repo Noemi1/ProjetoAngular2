@@ -53,5 +53,10 @@
 .btn.ver-detalhes{
     background-color: rgb(28, 117, 206);
     border: 0px rgb(28, 117, 206) solid;
-    
+
+}
+
+
+div.ui-dropdown {
+    min-width: unset!important;
 }

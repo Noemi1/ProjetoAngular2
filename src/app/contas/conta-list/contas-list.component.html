@@ -31,9 +31,9 @@
             <ng-template pTemplate="body" let-item>
                 <tr (click)="verDetalhesMobile(item)" [class.selected]="item === selected"  [class.unselected]="item !== selected">
                     <td>{{ item.IdConta }}</td>
-                    <td>{{ item.Agencia }}</td>
-                    <td>{{ item.NumeroConta }}</td>
-                    <td>{{ item.DataAbertura }}</td>
+                    <td>{{ item.Agencia | mask: '0000'}}</td>
+                    <td>{{ item.NumeroConta  | mask: '000000-0'}}</td>
+                    <td>{{ item.DataAbertura | mask: '00/00/0000'}}</td>
                     <td>{{ item.IdPessoa }}</td>
                 </tr>
             </ng-template>

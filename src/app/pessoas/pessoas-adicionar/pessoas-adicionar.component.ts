@@ -1,3 +1,4 @@
+import { PessoasModel } from './../../shared/models/pessoas.model';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -39,19 +40,18 @@ export class PessoasAdicionarComponent implements OnInit {
     onSubmit(form: NgForm) {
         if (this.service.formData.IdPessoa === 0) {
             this.insertRecord(form);
-            console.log('if');
         } else {
             console.log('else');
             this.updateRecord(form);
         }
     }
     insertRecord(form: NgForm) {
-        this.service.postPaymentDetail().subscribe(
+        this.service.putPaymentDetail().subscribe(
             res => {
                 this.resetForm(form);
                 this.toastr.success('Sucesso', 'Cadastrado com Sucesso!!');
                 this.service.refreshList();
-                this.router.navigate(['../pessoas']);
+                // this.router.navigate(['../pessoas']);
             },
             err => {
                 console.log(err);
@@ -62,7 +62,6 @@ export class PessoasAdicionarComponent implements OnInit {
     updateRecord(form: NgForm) {
         this.service.putPaymentDetail().subscribe(
             res => {
-                this.resetForm(form);
                 this.toastr.success('Sucesso', 'Atualizado com Sucesso!!');
                 this.service.refreshList();
             },

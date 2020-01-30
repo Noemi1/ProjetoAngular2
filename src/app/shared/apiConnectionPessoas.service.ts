@@ -10,7 +10,7 @@ export class ApiConnectionServicePessoas {
 
     readonly rootURL = 'http://localhost:54966/api'; /*Configurar a Porta do Visual Studio aqui*/
 
-    formData: PessoasModel;
+    public formData: PessoasModel;
     listPessoas: PessoasModel[];
 
     constructor(
@@ -21,11 +21,11 @@ export class ApiConnectionServicePessoas {
         this.http.get(this.rootURL + '/pessoas').toPromise()
             .then(res => this.listPessoas = res as PessoasModel[]);
     }
-    postPaymentDetail() {
+    putPaymentDetail() {
         const pessoas = this.http.post(this.rootURL + '/pessoas', this.formData);
         return pessoas;
     }
-    putPaymentDetail() {
+    postPaymentDetail() {
         return this.http.put(this.rootURL + '/pessoas/' + this.formData.IdPessoa, this.formData);
     }
     deletePaymentDetail(id) {

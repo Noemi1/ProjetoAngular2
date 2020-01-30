@@ -1,5 +1,6 @@
+import { PessoasAdicionarComponent } from './../pessoas-adicionar/pessoas-adicionar.component';
 import { PessoaListComponent } from './../pessoa-list/pessoa-list.component';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -24,14 +25,12 @@ export class PessoaDetailComponent implements OnInit {
         private serviceApiPessoas: ApiConnectionServicePessoas,
         private location: Location,
         private deletarPessoa: PessoaListComponent,
+        private salvarDados: PessoasAdicionarComponent,
     ) { }
-
-
     ngOnInit() {
         this.getPessoaDetalhe();
         this.serviceApiPessoas.refreshList();
     }
-
     getPessoaDetalhe() {
         this.serviceApiPessoas.getPessoas().forEach(e => {
             // tslint:disable: forin
@@ -39,6 +38,16 @@ export class PessoaDetailComponent implements OnInit {
                 if ((e[key])) {
                     if (e[key].IdPessoa === this.id) {
                         this.pessoa = e[key];
+                        this.serviceApiPessoas.formData = {
+                            IdPessoa: e[key].IdPessoa,
+                            NomePessoa: e[key].NomePessoa,
+                            DataNascPessoa: e[key].DataNascPessoa,
+                            RgPessoa: e[key].RgPessoa,
+                            CpfPessoa: e[key].CpfPessoa,
+                            Endereco: e[key].Endereco,
+                            NumeroEnd: e[key].NumeroEnd,
+                            Cep: e[key].Cep,
+                        };
                     }
                 }
             }
@@ -64,7 +73,6 @@ export class PessoaDetailComponent implements OnInit {
             }
         }
     }
-
     onDelete() {
         if (confirm('Os dados não serão recuperados, deseja continuar?')) {
             this.serviceApiPessoas.getPessoas().forEach(e => {
@@ -82,5 +90,9 @@ export class PessoaDetailComponent implements OnInit {
             });
 
         }
+    }
+    salvarAlteracoes(form: NgForm): void {
+        console.log(form);
+        this.salvarDados.onSubmit(form);
     }
 }

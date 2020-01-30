@@ -29,7 +29,7 @@ export class ContasListComponent implements OnInit {
         this.cols = [
             { header: 'Id', field: 'IdConta' },
             { header: 'Agencia', field: 'Agencia' },
-            { header: 'Conta', field: 'NUmeroConta' },
+            { header: 'Conta', field: 'NumeroConta' },
             { header: 'Abertura', field: 'DataAbertura' },
             { header: 'Titular', field: 'IdPessoa' },
         ];

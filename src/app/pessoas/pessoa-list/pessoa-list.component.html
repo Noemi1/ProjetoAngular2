@@ -10,7 +10,7 @@
             </a>
         </header>
         <div class="wrapper-body list-container">
-            <p-table [value]="service.listPessoas" *ngIf="service.listPessoas" [columns]="cols" [paginator]="true" [rows]="10" #dt>
+            <p-table [value]="serviceApiPessoas.listPessoas" *ngIf="serviceApiPessoas.listPessoas" [columns]="cols" [paginator]="true" [rows]="10" #dt>
                 <ng-template pTemplate="caption">
                     <div style="text-align: right">
                         <i class="pi pi-search" style="margin: 5px 10px auto 0"></i>
@@ -31,12 +31,12 @@
                     <tr (click)="verDetalhesMobile(item)" [class.selected]="item === selected" [class.unselected]="item !== selected">
                         <td> {{ item.IdPessoa }} </td>
                         <td> {{ item.NomePessoa }} </td>
-                        <td> {{ item.DataNascPessoa }} </td>
-                        <td> {{ item.RgPessoa }} </td>
-                        <td> {{ item.CpfPessoa }} </td>
+                        <td> {{ item.DataNascPessoa | mask: '00/00/0000'}} </td>
+                        <td> {{ item.RgPessoa | mask: '00.000.000-0'}} </td>
+                        <td> {{ item.CpfPessoa | mask: '000.000.000-00'}} </td>
                         <td> {{ item.Endereco }} </td>
                         <td> {{ item.NumeroEnd }} </td>
-                        <td> {{ item.Cep }} </td>
+                        <td> {{ item.Cep | mask: '00000-000'}} </td>
                     </tr>
                 </ng-template>
             </p-table>

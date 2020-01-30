@@ -9,6 +9,11 @@ import { ContasListComponent } from './../../contas/conta-list/contas-list.compo
 import { PessoasModel } from './../../shared/models/pessoas.model';
 import { FilterUtils } from 'primeng/utils';
 
+interface City {
+    name: string;
+    code: string;
+}
+
 @Component({
     selector: 'app-pessoa-list',
     templateUrl: './pessoa-list.component.html',
@@ -20,18 +25,21 @@ export class PessoaListComponent implements OnInit {
     private touchTime = 0;
     cols: any[];
     selected: PessoasModel;
+    contasVinculadas: ContasModel[] = [];
+    contaVinculada: ContasModel;
+    cities2: City[];
+    selectedCity2: any;
 
     constructor(
-        private service: ApiConnectionServicePessoas,
+        private serviceApiPessoas: ApiConnectionServicePessoas,
         private toastr: ToastrService,
         private router: Router,
         private serviceContasAPI: ApiConnectionContasService,
-        private serviceContas: ContasListComponent
+        private serviceContas: ContasListComponent,
     ) { }
 
     ngOnInit() {
-        this.service.refreshList();
-
+        this.serviceApiPessoas.refreshList();
         // Tabela
         // Header
         this.cols = [
@@ -43,6 +51,7 @@ export class PessoaListComponent implements OnInit {
             { field: 'Endereco', header: 'Endereço' },
             { field: 'NumeroEnd', header: 'Número' },
             { field: 'Cep', header: 'CEP' },
+            // { field: '', header: 'Contas' },
         ];
         // Filtro
         // tslint:disable: no-string-literal
@@ -92,10 +101,10 @@ export class PessoaListComponent implements OnInit {
 
     // Excluir pessoa
     deletar(pessoa: PessoasModel) {
-        this.service.deletePaymentDetail(pessoa.IdPessoa).subscribe(
+        this.serviceApiPessoas.deletePaymentDetail(pessoa.IdPessoa).subscribe(
             res => {
-                this.service.refreshList();
-                this.service.formData = {
+                this.serviceApiPessoas.refreshList();
+                this.serviceApiPessoas.formData = {
                     IdPessoa: 0,
                     NomePessoa: '',
                     DataNascPessoa: '',
@@ -132,6 +141,7 @@ export class PessoaListComponent implements OnInit {
             }
         }
     }
+
 
 
 }

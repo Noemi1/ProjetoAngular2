@@ -84,11 +84,4 @@ export class ContasDetailsComponent implements OnInit {
 
         }
     }
-    // salvarAlteracoes(form: any) {
-    //     if (confirm('Deseja salvar as alterações?')) {
-    //         this.serviceApiContas.formData = form;
-    //         this.update.onSubmit(form);
-    //         this.router.navigate(['../contas']);
-    //     }
-    // }
 }

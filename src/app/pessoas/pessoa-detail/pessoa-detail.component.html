@@ -2,7 +2,7 @@
     <a [routerLink]="['../../']" class="modal-bg"></a>
     <div class="modal-content">
         <h2>Detalhes</h2>
-        <form class="form-editar" #form="ngForm">
+        <form class="form-editar" #form="ngForm"  (submit)="salvarAlteracoes(form)">
             <div class="header-form-editar">
                 <button type="button" class="btn-deletar" (click)="onDelete()">Deletar</button>
                 <button type="button" (click)="habilitarEdicao()" class="btn-habilitarEdicao">{{ this.textBtnHabilidarEdicao }}</button>
@@ -14,8 +14,11 @@
                     <span class="ui-inputgroup-addon readonly ">Id:</span>
                     <input type="text"
                         pInputText
-                        [value]="pessoa.IdPessoa"
                         readonly
+                        [value]="pessoa.IdPessoa"
+                        #idPessoa="ngModel"
+                        name="idPessoa"
+                        [(ngModel)]="pessoa.IdPessoa"
                     >
                 </div>
                 <div class="ui-inputgroup">
@@ -23,16 +26,23 @@
                     <input type="text"
                         pInputText
                         required
-                        [value]="pessoa.NomePessoa"
                         [readonly]="this.desabilitar"
+                        [value]="pessoa.NomePessoa"
+                        #NomePessoa="ngModel"
+                        name="NomePessoa"
+                        [(ngModel)]="pessoa.NomePessoa"
                     >
                 </div>
                 <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon">Data de Nascimento:</span>
-                    <input type="date"
+                    <input type="text"
                         required
-                        [value]="pessoa.DataNascPessoa"
                         [readonly]="this.desabilitar"
+                        mask="00/00/0000"
+                        #dataNasc="ngModel"
+                        name="dataNasc"
+                        [(ngModel)]="pessoa.DataNascPessoa"
+                        [value]="pessoa.DataNascPessoa  | mask: '00/00/0000'"
                     >
                 </div>
                 <div class="ui-inputgroup ">
@@ -40,9 +50,12 @@
                     <input type="text"
                         pInputText
                         required
-                        mask="00.000.000-a"
-                        [value]="pessoa.RgPessoa"
+                        mask="00.000.000-0"
                         [readonly]="this.desabilitar"
+                        [value]="pessoa.RgPessoa | mask: '00.000.000-A'"
+                        #rg="ngModel"
+                        name="rg"
+                        [(ngModel)]="pessoa.RgPessoa"
 
                         >
                     </div>
@@ -52,8 +65,11 @@
                             pInputText
                             required
                             mask="000.000.000-00"
-                            [value]="pessoa.CpfPessoa"
                             [readonly]="this.desabilitar"
+                            [value]="pessoa.CpfPessoa | mask: '000.000.000-00'"
+                            #cpf="ngModel"
+                            name="cpf"
+                            [(ngModel)]="pessoa.CpfPessoa"
                         >
                     </div>
                     <div class="ui-inputgroup">
@@ -61,8 +77,11 @@
                         <input type="text"
                             pInputText
                             required
-                            [value]="pessoa.Endereco"
                             [readonly]="this.desabilitar"
+                            [value]="pessoa.Endereco"
+                            #endereço="ngModel"
+                            name="endereço"
+                            [(ngModel)]="pessoa.Endereco"
                         >
                     </div>
                     <div class="ui-inputgroup">
@@ -70,8 +89,11 @@
                         <input type="text"
                             pInputText
                             required
-                            [value]="pessoa.NumeroEnd"
                             [readonly]="this.desabilitar"
+                            [value]="pessoa.NumeroEnd"
+                            #numero="ngModel"
+                            name="numero"
+                            [(ngModel)]="pessoa.NumeroEnd"
                         >
                     </div>
                     <div class="ui-inputgroup">
@@ -80,8 +102,11 @@
                             pInputText
                             required
                             mask="00000-000"
-                            [value]="pessoa.Cep"
                             [readonly]="this.desabilitar"
+                            [value]="pessoa.Cep | mask: '00000-000'"
+                            #cep="ngModel"
+                            name="cep"
+                            [(ngModel)]="pessoa.Cep"
                         >
                     </div>
             </div>
