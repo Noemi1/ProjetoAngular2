@@ -69,7 +69,6 @@ export class PessoaDetailComponent implements OnInit {
         } else {
             if ( confirm('Você pode perder as alterações, deseja sair?') ) {
                 this.location.back();
-
             }
         }
     }
@@ -88,11 +87,10 @@ export class PessoaDetailComponent implements OnInit {
                 }
                 return this.pessoa;
             });
-
         }
     }
     salvarAlteracoes(form: NgForm): void {
-        console.log(form);
+        console.log(form)
         this.salvarDados.onSubmit(form);
     }
 }

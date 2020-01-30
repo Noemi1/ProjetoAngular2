@@ -25,7 +25,7 @@ export class ContasDetailsComponent implements OnInit {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private location: Location,
-        private update: ContasAdicionarComponent,
+        private salvarDados: ContasAdicionarComponent,
         private serviceApiContas: ApiConnectionContasService,
         private deletar: ContasListComponent,
     ) { }
@@ -41,6 +41,13 @@ export class ContasDetailsComponent implements OnInit {
                 if ((e[key])) {
                     if (e[key].IdConta === this.id) {
                         this.conta = e[key];
+                        this.serviceApiContas.formData = {
+                            IdConta: e[key].IdConta,
+                            Agencia: e[key].Agencia,
+                            NumeroConta: e[key].NumeroConta,
+                            DataAbertura: e[key].DataAbertura,
+                            IdPessoa: e[key].IdPessoa,
+                        };
                     }
                 }
             }
@@ -75,7 +82,6 @@ export class ContasDetailsComponent implements OnInit {
                         if (e[key].IdConta === this.id) {
                             this.deletar.onDelete(e[key]);
                             this.serviceApiContas.refreshList();
-                            this.location.back();
                         }
                     }
                 }
@@ -83,5 +89,10 @@ export class ContasDetailsComponent implements OnInit {
             });
 
         }
+    }
+
+    salvarAlteracoes(form: NgForm): void {
+        console.log(form);
+        this.salvarDados.onSubmit(form);
     }
 }

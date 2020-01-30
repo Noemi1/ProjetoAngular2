@@ -2,7 +2,7 @@
     <a [routerLink]="['../../']" class="modal-bg"></a>
     <div class="modal-content">
         <h2>Detalhes</h2>
-        <form class="form-editar" #form="ngForm"  (submit)="salvarAlteracoes(form)">
+        <form class="form-editar" #form="ngForm"  (submit)="salvarAlteracoes(pessoa)">
             <div class="header-form-editar">
                 <button type="button" class="btn-deletar" (click)="onDelete()">Deletar</button>
                 <button type="button" (click)="habilitarEdicao()" class="btn-habilitarEdicao">{{ this.textBtnHabilidarEdicao }}</button>

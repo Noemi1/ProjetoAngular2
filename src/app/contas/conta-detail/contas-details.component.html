@@ -2,20 +2,23 @@
     <a [routerLink]="['../../']" class="modal-bg"></a>
     <div class="modal-content">
         <h2>Detalhes</h2>
-        <form class="form-editar" #form="ngForm">
+        <form class="form-editar" #form="ngForm" (submit)="salvarAlteracoes(conta)">
             <div class="header-form-editar">
                 <button type="button" class="btn-deletar" (click)="deletarConta(form)">Deletar</button>
                 <button type="button" (click)="habilitarEdicao()" class="btn-habilitarEdicao">{{ this.textBtnHabilidarEdicao }}</button>
                 <button (click)="voltar(form)" class="btn-voltar">Voltar</button>
-                <button type="submit" class="btn-editar">Editar</button>
+                <button type="submit" class="btn-editar" >Editar</button>
             </div>
             <div class="form-content" [class.readonly]="this.desabilitar" [class.form-habilitado]="!this.desabilitar">
                 <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon readonly ">Id:</span>
                     <input type="text"
                         pInputText
-                        [value]="conta.IdConta"
                         readonly
+                        [value]="conta.IdConta"
+                        #idConta="ngModel"
+                        name="idConta"
+                        [(ngModel)]="conta.IdConta"
                     >
                 </div>
                 <div class="ui-inputgroup">
@@ -24,10 +27,11 @@
                         pInputText
                         required
                         mask="9999"
-                        [value]="conta.Agencia"
                         [readonly]="this.desabilitar"
-                        maxlength="4"
-                        minlength="4"
+                        [value]="conta.Agencia"
+                        #agencia="ngModel"
+                        name="agencia"
+                        [(ngModel)]="conta.Agencia"
                     >
                 </div>
                 <div class="ui-inputgroup ">
@@ -36,17 +40,23 @@
                         pInputText
                         required
                         mask="999999-9"
-                        [value]="conta.NumeroConta"
                         [readonly]="this.desabilitar"
-
+                        [value]="conta.NumeroConta"
+                        #numConta="ngModel"
+                        name="numConta"
+                        [(ngModel)]="conta.NumeroConta"
                     >
                 </div>
                 <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon">Data de Abertura:</span>
-                    <input type="date"
+                    <input type="text"
+                        mask="99/99/9999"
                         required
-                        [value]="conta.DataAbertura"
                         [readonly]="this.desabilitar"
+                        [value]="conta.DataAbertura"
+                        #idPessoa="ngModel"
+                        name="idPessoa"
+                        [(ngModel)]="conta.DataAbertura"
                     >
                 </div>
                 <div class="ui-inputgroup">
@@ -54,8 +64,11 @@
                     <input type="text"
                         required
                         pInputText
-                        [value]="conta.IdPessoa"
                         [readonly]="this.desabilitar"
+                        [value]="conta.IdPessoa"
+                        #idPessoa="ngModel"
+                        name="idPessoa"
+                        [(ngModel)]="conta.IdPessoa"
                     >
                 </div>
             </div>

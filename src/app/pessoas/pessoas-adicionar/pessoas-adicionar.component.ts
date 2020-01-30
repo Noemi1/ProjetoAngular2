@@ -46,7 +46,7 @@ export class PessoasAdicionarComponent implements OnInit {
         }
     }
     insertRecord(form: NgForm) {
-        this.service.putPaymentDetail().subscribe(
+        this.service.postPaymentDetail().subscribe(
             res => {
                 this.resetForm(form);
                 this.toastr.success('Sucesso', 'Cadastrado com Sucesso!!');
@@ -54,13 +54,13 @@ export class PessoasAdicionarComponent implements OnInit {
                 // this.router.navigate(['../pessoas']);
             },
             err => {
-                console.log(err);
+                console.log(err.error);
                 this.toastr.error('Deu erro man!', 'Error');
             }
         );
     }
     updateRecord(form: NgForm) {
-        this.service.putPaymentDetail().subscribe(
+        this.service.putPaymentDetail(form).subscribe(
             res => {
                 this.toastr.success('Sucesso', 'Atualizado com Sucesso!!');
                 this.service.refreshList();

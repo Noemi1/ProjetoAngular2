@@ -21,12 +21,12 @@ export class ApiConnectionServicePessoas {
         this.http.get(this.rootURL + '/pessoas').toPromise()
             .then(res => this.listPessoas = res as PessoasModel[]);
     }
-    putPaymentDetail() {
+    postPaymentDetail() {
         const pessoas = this.http.post(this.rootURL + '/pessoas', this.formData);
         return pessoas;
     }
-    postPaymentDetail() {
-        return this.http.put(this.rootURL + '/pessoas/' + this.formData.IdPessoa, this.formData);
+    putPaymentDetail(pessoa) {
+        return this.http.put(this.rootURL + '/pessoas/' + this.formData.IdPessoa, pessoa);
     }
     deletePaymentDetail(id) {
         return this.http.delete(this.rootURL + '/pessoas/' + id);

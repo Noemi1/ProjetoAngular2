@@ -28,8 +28,8 @@ export class ApiConnectionContasService {
         const contas = this.http.post(this.rootURL + '/contas', this.formData);
         return contas;
     }
-    putPaymentDetail() {
-        return this.http.put(this.rootURL + '/contas/' + this.formData.IdConta, this.formData);
+    putPaymentDetail(conta) {
+        return this.http.put(this.rootURL + '/contas/' + this.formData.IdConta, conta);
     }
     deleteConta(id) {
         return this.http.delete(this.rootURL + '/contas/' + id);

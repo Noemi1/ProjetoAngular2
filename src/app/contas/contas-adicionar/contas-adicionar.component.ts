@@ -67,7 +67,7 @@ export class ContasAdicionarComponent implements OnInit {
         );
     }
     updateRecord(form: NgForm) {
-        this.service.putPaymentDetail().subscribe(
+        this.service.putPaymentDetail(form).subscribe(
             res => {
                 this.toastr.success('Sucesso', 'Atualizado com Sucesso!!');
                 this.router.navigate(['../contas']);
