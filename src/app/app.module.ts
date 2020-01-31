@@ -37,7 +37,7 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
     PasswordModule,
     ShowHidePasswordModule
   ],
-  providers: [],
+  providers: [LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

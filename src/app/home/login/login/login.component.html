@@ -1,24 +1,24 @@
 <div class="modal">
     <a [routerLink]="['../']" class="modal-bg"></a>
     <div class="modal-content">
-        <form autocomplete="on">
+        <form autocomplete="on" #form (submit)="getUsuario(userdigit)">
             <h2>Login</h2>
-            <p>
+            <p class="">
                 <label for="email">User: </label>
+                <br>
                 <input
                     type="email"
+                    pInputText
                     id="email"
                     [email]="true"
                     placeholder="ex: lalal@gmail.com"
                     required
                     name="email"
-                    ngModel
+                    [(ngModel)]="userdigit.email"
                     #email="ngModel"
+                    style="width: 100%; padding: 5px 15px;"
                 >
             </p>
-                <div *ngIf="email.error">
-                    oi
-                </div>
             <p>
                 <label for="senha">Senha: </label>
                 <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
@@ -27,15 +27,20 @@
                         id="senha"
                         pPassword
                         required
+                        style="width: 100%; padding: 5px 15px;"
                         autocomplete="on"
                         placeholder="****"
                         [feedback]="false"
                         name="password"
-                        [(ngModel)]="property"
+                        [(ngModel)]="userdigit.senha"
                     >
                 </show-hide-password>
-
-                {{ property }}
+            </p>
+            <p>
+                <button
+                    type="submit"
+                    style="margin-left: auto; background: green; color: honeydew;"
+                >Entrar</button>
             </p>
         </form>
     </div>

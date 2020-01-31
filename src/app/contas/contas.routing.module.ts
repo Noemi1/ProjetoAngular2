@@ -9,7 +9,7 @@ import { PessoasAdicionarComponent } from '../pessoas/pessoas-adicionar/pessoas-
 
 
 const contasRoutes: Routes = [
-    { path: 'contas', component: ContasListComponent, children: [
+    { path: 'contas', component: ContasListComponent, canActivate: [], children: [
         { path: 'contas-detail/:id', component: ContasDetailsComponent },
         { path: 'contas-detail/:id/editar', component: ContasDetailsComponent },
         { path: 'contas-adicionar', component: ContasAdicionarComponent },
@@ -18,7 +18,7 @@ const contasRoutes: Routes = [
         { path: 'pessoas-adicionar', component: PessoasAdicionarComponent}
     ]}
 
-
+// https://www.canlitv.today/trt-spor-2
 ];
 @NgModule({
     imports: [
