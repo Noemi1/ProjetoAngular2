@@ -163,3 +163,7 @@ button, .link-button {
     width: auto!important;
     min-width: 40px!important;
 }
+
+button[disabled] {
+    filter: grayscale(0.9);
+}

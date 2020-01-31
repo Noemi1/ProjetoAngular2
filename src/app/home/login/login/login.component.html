@@ -1,1 +1,42 @@
-<p>login works!</p>
+<div class="modal">
+    <a [routerLink]="['../']" class="modal-bg"></a>
+    <div class="modal-content">
+        <form autocomplete="on">
+            <h2>Login</h2>
+            <p>
+                <label for="email">User: </label>
+                <input
+                    type="email"
+                    id="email"
+                    [email]="true"
+                    placeholder="ex: lalal@gmail.com"
+                    required
+                    name="email"
+                    ngModel
+                    #email="ngModel"
+                >
+            </p>
+                <div *ngIf="email.error">
+                    oi
+                </div>
+            <p>
+                <label for="senha">Senha: </label>
+                <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+                    <input
+                        type="password"
+                        id="senha"
+                        pPassword
+                        required
+                        autocomplete="on"
+                        placeholder="****"
+                        [feedback]="false"
+                        name="password"
+                        [(ngModel)]="property"
+                    >
+                </show-hide-password>
+
+                {{ property }}
+            </p>
+        </form>
+    </div>
+</div>

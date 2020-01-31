@@ -51,3 +51,6 @@ button {
     color: #fff!important;
     border-color:  rgb(64, 127, 199)!important;
 }
+button[disabled] {
+    filter: grayscale(0.9);
+}

@@ -7,7 +7,7 @@
                 <button type="button" class="btn-deletar" (click)="deletarConta(form)">Deletar</button>
                 <button type="button" (click)="habilitarEdicao()" class="btn-habilitarEdicao">{{ this.textBtnHabilidarEdicao }}</button>
                 <button (click)="voltar(form)" class="btn-voltar">Voltar</button>
-                <button type="submit" class="btn-editar" >Editar</button>
+                <button type="submit" class="btn-editar" [disabled]="this.desabilitar && form.invalid || form.untouched">Editar</button>
             </div>
             <div class="form-content" [class.readonly]="this.desabilitar" [class.form-habilitado]="!this.desabilitar">
                 <div class="ui-inputgroup">
