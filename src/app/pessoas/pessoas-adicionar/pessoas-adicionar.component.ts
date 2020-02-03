@@ -1,5 +1,4 @@
-import { PessoasModel } from './../../shared/models/pessoas.model';
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router, } from '@angular/router';

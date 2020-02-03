@@ -1,0 +1,79 @@
+<div class="modal">
+    <a [routerLink]="['../']" class="modal-bg"></a>
+    <div class="modal-content">
+        <div class="row">
+            <h1>Cadastrar</h1>
+        </div>
+        <form #form="ngForm" (submit)="cadastrarUsuario(form)">
+            <div class="row">
+                <input type="hidden"
+                    #idUser="ngModel"
+                    name="idUser"
+                    [(ngModel)]="serviceApiUser.formUser.IdUser"
+                >
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input type="text"
+                        pInputText
+                        placeholder="Nome de Usuário"
+                        required
+                        #User="ngModel"
+                        name="User"
+                        [(ngModel)]="serviceApiUser.formUser.User"
+                    >
+                </div>
+            </div>
+            <div class="row">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input type="email"
+                        email="true"
+                        pInputText
+                        placeholder="Email"
+                        required
+                        #Email="ngModel"
+                        name="Email"
+                        [(ngModel)]="serviceApiUser.formUser.Email"
+
+                    >
+                </div>
+            </div>
+            <div class="row senhas">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+                        <input type="password" style="width: 100%; padding: 5px 15px;"
+                            id="senha"
+                            pPassword
+                            required
+                            autocomplete="on"
+                            placeholder="Senha"
+                            #Senha="ngModel"
+                            name="Senha"
+                            [(ngModel)]="serviceApiUser.formUser.Senha"
+                        >
+                    </show-hide-password>
+                </div>
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+                        <input type="password" style="width: 100%; padding: 5px 15px;"
+                            id="senha"
+                            pPassword
+                            required
+                            autocomplete="on"
+                            placeholder="Confirmar Senha"
+                            #senhaConfirma
+                        >
+                    </show-hide-password>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit"
+                    style="margin-left: auto; background: green; color: honeydew;"
+                >Cadastrar</button>
+            </div>
+
+        </form>
+    </div>
+</div>

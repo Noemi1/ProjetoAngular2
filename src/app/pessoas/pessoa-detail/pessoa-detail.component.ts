@@ -1,8 +1,8 @@
 import { PessoasAdicionarComponent } from './../pessoas-adicionar/pessoas-adicionar.component';
 import { PessoaListComponent } from './../pessoa-list/pessoa-list.component';
-import { NgForm, NgControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { PessoasModel } from './../../shared/models/pessoas.model';

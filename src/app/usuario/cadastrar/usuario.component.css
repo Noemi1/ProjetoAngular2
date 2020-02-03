@@ -1,0 +1,22 @@
+div.row {
+    width: 90%;
+    margin: 10px auto;
+}
+div.row  div{
+    width: 100%;
+}
+input {
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 10px;
+}
+input::placeholder {
+    font-size: 1.6rem;
+}
+.row.senhas div {
+    width: 48%;
+}
+.row.senhas {
+    display: flex;
+    justify-content: space-between;
+}

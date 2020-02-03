@@ -1,14 +1,14 @@
-import { ContasModel } from './../shared/models/contas.model';
-import { PessoaListComponent } from './../pessoas/pessoa-list/pessoa-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 
+import { ContasModel } from './../shared/models/contas.model';
 import { ContasListComponent } from './conta-list/contas-list.component';
 import { ContasDetailsComponent } from './conta-detail/contas-details.component';
 import { ContasAdicionarComponent } from './contas-adicionar/contas-adicionar.component';
 import { ContasRountingModule } from './contas.routing.module';
+import { PessoaListComponent } from './../pessoas/pessoa-list/pessoa-list.component';
 
 // PrimeNG
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

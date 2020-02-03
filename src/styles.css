@@ -39,7 +39,7 @@ a {
     text-align: center;
     cursor: pointer;
     color: #fff;
-    display: flex;
+    display: inline-flex;
     vertical-align: unset;
     line-height: unset;
 }
@@ -166,4 +166,8 @@ button, .link-button {
 
 button[disabled] {
     filter: grayscale(0.9);
+}
+.input-group-lg > input.form-control {
+    height: 100%;
+    width: 100%;
 }

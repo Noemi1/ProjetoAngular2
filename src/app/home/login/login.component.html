@@ -1,7 +1,7 @@
 <div class="modal">
     <a [routerLink]="['../']" class="modal-bg"></a>
     <div class="modal-content">
-        <form autocomplete="on" #form (submit)="getUsuario(userdigit)">
+        <form autocomplete="on" #form (submit)="fazerLogin(usuario)">
             <h2>Login</h2>
             <p class="">
                 <label for="email">User: </label>
@@ -14,7 +14,7 @@
                     placeholder="ex: lalal@gmail.com"
                     required
                     name="email"
-                    [(ngModel)]="userdigit.email"
+                    [(ngModel)]="usuario.email"
                     #email="ngModel"
                     style="width: 100%; padding: 5px 15px;"
                 >
@@ -32,14 +32,18 @@
                         placeholder="****"
                         [feedback]="false"
                         name="password"
-                        [(ngModel)]="userdigit.senha"
+                        [(ngModel)]="usuario.senha"
                     >
                 </show-hide-password>
             </p>
-            <p>
+            <p style="display: flex;">
+                <a [routerLink]="['/cadastrarUsuario']" routerLinkActive="active"
+                style="margin-right: auto; margin-left: 0; background: rgb(88, 50, 150); color: honeydew;"
+                class="btn">Cadastrar</a>
                 <button
                     type="submit"
                     style="margin-left: auto; background: green; color: honeydew;"
+                    class="btn"
                 >Entrar</button>
             </p>
         </form>
