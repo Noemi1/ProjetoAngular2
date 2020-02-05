@@ -1,3 +1,4 @@
+import { of } from 'rxjs';
 import { UsuarioModel } from './models/usuario.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -7,7 +8,7 @@ import { PessoasModel } from './models/pessoas.model';
 @Injectable({
     providedIn: 'root'
 })
-export class apiConnectionServiceUsuario {
+export class ApiConnectionServiceUsuario {
 
     readonly rootURL = 'http://localhost:54966/api'; /*Configurar a Porta do Visual Studio aqui*/
 
