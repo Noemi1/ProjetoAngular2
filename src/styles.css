@@ -1,3 +1,5 @@
+@import '~ngx-toastr/toastr.css';
+
 * {
     margin: 0;
     padding: 0;
@@ -170,4 +172,12 @@ button[disabled] {
 .input-group-lg > input.form-control {
     height: 100%;
     width: 100%;
+}
+.invalid > span {
+    border-color: rgba(219, 4, 4, 0.8) !important;
+    color: rgba(219, 4, 4, 0.8) !important;
+}
+.valid > span {
+    border-color:rgba(7, 139, 47, 0.8)!important;
+    color: rgba(7, 139, 47, 0.8)!important;
 }

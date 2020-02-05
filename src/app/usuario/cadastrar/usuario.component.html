@@ -4,15 +4,20 @@
         <div class="row">
             <h1>Cadastrar</h1>
         </div>
-        <form #form="ngForm" (submit)="cadastrarUsuario(form)">
+        <form id="form" #form="ngForm" (submit)="cadastrarUsuario(form)">
             <div class="row">
                 <input type="hidden"
                     #idUser="ngModel"
                     name="idUser"
                     [(ngModel)]="serviceApiUser.formUser.IdUser"
                 >
-                <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                <div class="ui-inputgroup reverse"
+                    [class.invalid]="this.temUser || User.invalid && User.touched"
+                    [class.valid]="!this.temUser && User.valid && User.touched"
+                >
+                    <span class="ui-inputgroup-addon">
+                        <i class="pi pi-user" style="line-height: 1.25;"></i>
+                    </span>
                     <input type="text"
                         pInputText
                         placeholder="Nome de Usuário"
@@ -20,12 +25,21 @@
                         #User="ngModel"
                         name="User"
                         [(ngModel)]="serviceApiUser.formUser.User"
+                        (focusout)="verificarEmail(form)"
+                        [class.ng-invalid]="this.temUser"
+                        [class.ng-valid]="!this.temUser"
                     >
                 </div>
+                <span *ngIf="this.temUser">Este nome de usuário não está disponível, tente outro</span>
             </div>
             <div class="row">
-                <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                <div class="ui-inputgroup"
+                    [class.invalid]="this.temEmail || Email.invalid && Email.touched"
+                    [class.valid]="!this.temEmail && Email.valid && Email.touched"
+                >
+                    <span class="ui-inputgroup-addon">
+                        <i class="pi pi-user" style="line-height: 1.25;"></i>
+                    </span>
                     <input type="email"
                         email="true"
                         pInputText
@@ -34,16 +48,23 @@
                         #Email="ngModel"
                         name="Email"
                         [(ngModel)]="serviceApiUser.formUser.Email"
-
+                        (focusout)="verificarEmail(form)"
+                        [class.ng-invalid]="this.temEmail"
                     >
                 </div>
+                <span *ngIf="this.temEmail">Este email não está disponível, tente outro</span>
             </div>
             <div class="row senhas">
-                <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                <div class="ui-inputgroup"
+                    [class.valid]="Senha.valid && senhaConfirma.valid"
+                    [class.invalid]="Senha.invalid && senhaConfirma.valid"
+                >
+                    <span class="ui-inputgroup-addon">
+                        <i class="pi pi-user" style="line-height: 1.25;"></i>
+                    </span>
                     <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
                         <input type="password" style="width: 100%; padding: 5px 15px;"
-                            id="senha"
+                            id="senhaUser"
                             pPassword
                             required
                             autocomplete="on"
@@ -51,25 +72,35 @@
                             #Senha="ngModel"
                             name="Senha"
                             [(ngModel)]="serviceApiUser.formUser.Senha"
+                            [class.ng-invalid]="Senha.touched && senhaConfirma.value !== Senha.value"
+                            [class.ng-valid]="senhaConfirma.touched && senhaConfirma.value === Senha.value"
                         >
                     </show-hide-password>
                 </div>
                 <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <span class="ui-inputgroup-addon">
+                        <i class="pi pi-user" style="line-height: 1.25;"></i>
+                    </span>
                     <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
                         <input type="password" style="width: 100%; padding: 5px 15px;"
-                            id="senha"
+                            id="senhaConfirma"
                             pPassword
                             required
                             autocomplete="on"
                             placeholder="Confirmar Senha"
                             #senhaConfirma
+                            name="senhaConfirma"
+                            ngModel
+                            [class.ng-invalid]="senhaConfirma.value !== Senha.value"
+                            [class.ng-valid]="senhaConfirma.value === Senha.value"
                         >
                     </show-hide-password>
                 </div>
+                <span *ngIf="senhaConfirma.value !== Senha.value">As senhas são diferentes</span>
             </div>
             <div class="row">
                 <button type="submit"
+                    [disabled]="form.invalid"
                     style="margin-left: auto; background: green; color: honeydew;"
                 >Cadastrar</button>
             </div>

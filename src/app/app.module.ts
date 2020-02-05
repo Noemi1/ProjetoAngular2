@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './home/login/auth.service';
@@ -42,6 +43,7 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
         BrowserAnimationsModule,
         PasswordModule,
         ShowHidePasswordModule,
+        ToastrModule.forRoot(),
     ],
     providers: [
         AuthService,

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { UsuarioModel } from './../../shared/models/usuario.model';
+import { Component, OnInit, Input } from '@angular/core';
+import { NgForm, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
-import { apiConnectionServiceUsuario } from './../../shared/apiConnectionUsuario.service';
+import { ApiConnectionServiceUsuario } from './../../shared/apiConnectionUsuario.service';
 
 @Component({
     selector: 'app-usuario',
@@ -11,22 +11,20 @@ import { apiConnectionServiceUsuario } from './../../shared/apiConnectionUsuario
     styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent implements OnInit {
-    usuarios = this.serviceApiUser.getUsuarios().forEach(e => {
-        e.hasOwnProperty('IdUser');
-    });
+
+    oi = [];
+    temUser = false;
+    temEmail = false;
+
     constructor(
-        private serviceApiUser: apiConnectionServiceUsuario,
+        private serviceApiUser: ApiConnectionServiceUsuario,
         private toastr: ToastrService,
-        private router: Router
     ) { }
 
     ngOnInit() {
         this.resetForm();
-        console.log(this.usuarios);
     }
     resetForm(form?: NgForm) {
-        console.log(form);
-
         if (form != null) {
             form.resetForm();
         }
@@ -38,10 +36,40 @@ export class UsuarioComponent implements OnInit {
         };
     }
     cadastrarUsuario(usuario: NgForm) {
-        console.log(usuario.valueChanges);
-        this.onSubmit(usuario);
-  }
+        this.verificarEmail(usuario);
+        if (this.temUser && this.temEmail) {
+            alert('Já existe um email e um usuario com esse nome, tente novamente');
+        } else if (this.temUser) {
+            alert('Já existe um usuario com esse nome, tente novamente');
+        } else if (this.temEmail) {
+            alert('Já existe um email com esse nome, tente novamente');
+        } else {
+            this.onSubmit(usuario);
+        }
+    }
+    verificarEmail(valor) {
+        this.serviceApiUser.getUsuarios().forEach(users => {
 
+            this.oi = users as Array<UsuarioModel>;
+
+            const user = this.oi.find(e => e.User === valor.value.User);
+            const email = this.oi.find(e => e.Email === valor.value.Email);
+
+            if (this.oi.length > 0) {
+                if (user) {
+                    this.temUser = true;
+                } else {
+                    this.temUser = false;
+                }
+                if (email) {
+                    this.temEmail = true;
+                } else {
+                    this.temEmail = false;
+                }
+            }
+        });
+        return [this.temEmail, this.temUser];
+    }
     onSubmit(form: NgForm) {
         if (this.serviceApiUser.formUser.IdUser === 0) {
             this.insertRecord(form);
@@ -75,5 +103,4 @@ export class UsuarioComponent implements OnInit {
             }
         );
     }
-
 }
