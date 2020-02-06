@@ -4,7 +4,7 @@
         <div class="row">
             <h1>Cadastrar</h1>
         </div>
-        <form id="form" #form="ngForm" (submit)="cadastrarUsuario(form)">
+        <form id="form" #form="ngForm" (ngSubmit)="cadastrarUsuario(form)">
             <div class="row">
                 <input type="hidden"
                     #idUser="ngModel"
@@ -104,7 +104,6 @@
                     style="margin-left: auto; background: green; color: honeydew;"
                 >Cadastrar</button>
             </div>
-
         </form>
     </div>
 </div>

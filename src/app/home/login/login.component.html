@@ -4,13 +4,13 @@
         <form autocomplete="on" #form (submit)="fazerLogin(usuario)">
             <h2>Login</h2>
             <p class="">
-                <label for="email">User: </label>
+                <label for="email">Email: </label>
                 <br>
                 <input
                     type="email"
+                    [email]="true"
                     pInputText
                     id="email"
-                    [email]="true"
                     placeholder="ex: lalal@gmail.com"
                     required
                     name="email"

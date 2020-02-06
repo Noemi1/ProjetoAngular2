@@ -1,6 +1,6 @@
 import { UsuarioModel } from './../../shared/models/usuario.model';
 import { Component, OnInit, Input } from '@angular/core';
-import { NgForm, FormControl } from '@angular/forms';
+import { NgForm, Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { ApiConnectionServiceUsuario } from './../../shared/apiConnectionUsuario.service';
@@ -15,6 +15,8 @@ export class UsuarioComponent implements OnInit {
     oi = [];
     temUser = false;
     temEmail = false;
+
+    form: FormGroup;
 
     constructor(
         private serviceApiUser: ApiConnectionServiceUsuario,
