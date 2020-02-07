@@ -8,7 +8,7 @@ import { Injectable, EventEmitter } from '@angular/core';
     providedIn: 'root'
 })
 export class AuthService {
-    private usuarioAutenticado = false;
+    private usuarioAutenticado = true;
     mostrarMenu = new EventEmitter<boolean>();
     constructor(
         private router: Router,

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 
+
 import { PessoasModel } from './../shared/models/pessoas.model';
 import { PessoasRoutingModule } from './pessoas.routing.module';
 import { PessoaListComponent } from './pessoa-list/pessoa-list.component';

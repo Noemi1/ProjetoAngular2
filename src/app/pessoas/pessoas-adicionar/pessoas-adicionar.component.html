@@ -65,8 +65,9 @@
                                 required
                                 #cep="ngModel"
                                 name="cep"
-                                [(ngModel)]="service.formData.cep"
+                                [(ngModel)]="service.formData.Cep"
                                 mask="00000-000"
+                                (blur)="consultaCep($event.target.value)"
                             >
                         </div>
 

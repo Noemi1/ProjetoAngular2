@@ -1,7 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Router, } from '@angular/router';
+import { Router } from '@angular/router';
+import 'rxjs/add/operator/map';
+import { Http } from '@angular/http';
+import { map } from 'rxjs/operators';
 
 import { ApiConnectionServicePessoas } from './../../shared/apiConnectionPessoas.service';
 
@@ -15,7 +19,8 @@ export class PessoasAdicionarComponent implements OnInit {
     constructor(
         private service: ApiConnectionServicePessoas,
         private toastr: ToastrService,
-        private router: Router
+        private router: Router,
+        private http: HttpClient,
     ) { }
 
     ngOnInit() {
@@ -78,5 +83,20 @@ export class PessoasAdicionarComponent implements OnInit {
         } else {
             this.router.navigate(['../pessoas']);
         }
+    }
+    consultaCep(cep) {
+        console.log(cep);
+        cep = cep.replace(/\D/g, '');
+        if (cep !== '') {
+            const validarCep = /^[0-9]{8}$/;
+            if (validarCep.test(cep)) {
+                const oi = this.http.get(`https://viacep.com.br/ws/${cep}/json`)
+                    .pipe(
+                        map(dados => dados)
+                    );
+                oi.subscribe(dados => console.log(dados));
+            }
+        }
+
     }
 }
